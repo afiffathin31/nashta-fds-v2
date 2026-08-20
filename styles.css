@@ -233,6 +233,8 @@ body.sidebar-collapsed .sidebar {
 
 .nav-group.open .nav-group-header {
   color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+  font-weight: 600;
 }
 
 .nav-group-header .group-title {
@@ -253,9 +255,9 @@ body.sidebar-collapsed .sidebar {
 .nav-sub-items {
   display: none;
   flex-direction: column;
-  padding-left: 32px;
-  margin-top: 2px;
-  gap: 2px;
+  padding-left: 24px;
+  margin-top: 3px;
+  gap: 3px;
 }
 
 .nav-group.open .nav-sub-items {
@@ -263,8 +265,8 @@ body.sidebar-collapsed .sidebar {
 }
 
 .nav-sub-items .sub-item {
-  padding: 6px 12px;
-  font-size: 0.78rem;
+  padding: 8px 12px;
+  font-size: 0.8rem;
   color: #94a3b8;
   text-decoration: none;
   border-radius: var(--radius-sm);
@@ -276,13 +278,15 @@ body.sidebar-collapsed .sidebar {
 
 .nav-sub-items .sub-item:hover {
   color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .nav-sub-items .sub-item.active {
-  color: #fca5a5;
-  font-weight: 600;
-  background-color: rgba(217, 37, 37, 0.12);
+  color: #ffffff;
+  font-weight: 700;
+  background-color: rgba(217, 37, 37, 0.2);
+  border-left: 3px solid var(--primary);
+  padding-left: 9px;
 }
 
 .sidebar-footer {
@@ -608,12 +612,12 @@ body.sidebar-collapsed .main-wrapper {
 }
 
 .subnav-tab-btn {
-  padding: 8px 16px;
+  padding: 8px 14px;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--text-muted);
-  background: transparent;
-  border: none;
+  color: #475569;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition);
@@ -626,13 +630,15 @@ body.sidebar-collapsed .main-wrapper {
 
 .subnav-tab-btn:hover {
   color: var(--text-main);
-  background-color: var(--bg-main);
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 .subnav-tab-btn.active {
-  background-color: var(--primary);
-  color: #ffffff;
-  box-shadow: 0 2px 6px rgba(217, 37, 37, 0.3);
+  background-color: var(--primary) !important;
+  color: #ffffff !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 2px 8px rgba(217, 37, 37, 0.35) !important;
 }
 
 .sub-view-pane {

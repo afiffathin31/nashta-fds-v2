@@ -545,34 +545,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- NAVIGATION & ROUTING ---
 function initNavigation() {
-  // Main sidebar nav buttons
+  // 1. Top-level standalone nav buttons (Modul 6-10)
   document.querySelectorAll('.sidebar-nav .nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetView = btn.getAttribute('data-view');
-      if (targetView) switchView(targetView);
+      if (targetView) {
+        // Close open accordion groups when switching to standalone module
+        document.querySelectorAll('.nav-group').forEach(g => g.classList.remove('open'));
+        switchView(targetView);
+      }
     });
   });
 
-  // Collapsible nav groups
+  // 2. Collapsible nav group headers (Modul 1-5)
   document.querySelectorAll('.nav-group-header').forEach(header => {
     header.addEventListener('click', (e) => {
       e.stopPropagation();
       const parent = header.closest('.nav-group');
-      parent.classList.toggle('open');
+      const groupName = header.getAttribute('data-group');
+      const isOpen = parent.classList.contains('open');
+
+      // Close all other groups (Accordion mode)
+      document.querySelectorAll('.nav-group').forEach(g => g.classList.remove('open'));
+
+      if (!isOpen) {
+        parent.classList.add('open');
+      }
+
+      if (groupName) {
+        const defaultSub = state.currentSubView[groupName] || (groupName === 'procurement' ? 'dashboard' : 'overview');
+        switchView(groupName, defaultSub);
+      }
     });
   });
 
-  // Sub-items in sidebar
+  // 3. Sub-items inside sidebar accordion
   document.querySelectorAll('.nav-sub-items .sub-item').forEach(sub => {
     sub.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const targetView = sub.getAttribute('data-view');
       const targetSub = sub.getAttribute('data-sub');
-      if (targetView) switchView(targetView, targetSub);
+      if (targetView && targetSub) switchView(targetView, targetSub);
     });
   });
 
-  // In-module subnav buttons
+  // 4. In-module horizontal subnav tab buttons
   document.querySelectorAll('.module-subnav-bar .subnav-tab-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -582,7 +600,7 @@ function initNavigation() {
     });
   });
 
-  // Sidebar toggle button (Handles both desktop collapse & mobile drawer)
+  // 5. Sidebar toggle button (Handles both desktop collapse & mobile drawer)
   const sidebarToggle = document.getElementById('sidebar-toggle');
   if (sidebarToggle) {
     sidebarToggle.addEventListener('click', (e) => {
@@ -596,7 +614,7 @@ function initNavigation() {
     });
   }
 
-  // Sidebar backdrop click (Closes mobile drawer)
+  // 6. Sidebar backdrop click (Closes mobile drawer)
   const backdrop = document.getElementById('sidebar-backdrop');
   if (backdrop) {
     backdrop.addEventListener('click', () => {
@@ -612,7 +630,14 @@ function switchView(viewName, subViewName) {
   }
 
   state.currentView = viewName;
-  const sub = subViewName || state.currentSubView[viewName] || 'overview';
+  const defaultSubMap = {
+    financial: 'overview',
+    procurement: 'dashboard',
+    tax: 'equalization',
+    approvals: 'toxic',
+    operational: 'pos'
+  };
+  const sub = subViewName || state.currentSubView[viewName] || defaultSubMap[viewName] || 'overview';
   state.currentSubView[viewName] = sub;
 
   // 1. Switch View Panel
@@ -632,13 +657,11 @@ function switchView(viewName, subViewName) {
   const prefix = prefixMap[viewName];
   if (prefix && targetPanel) {
     targetPanel.querySelectorAll('.sub-view-pane').forEach(pane => pane.classList.remove('active'));
-    const targetPane = document.getElementById(`${prefix}${sub}`);
-    if (targetPane) {
-      targetPane.classList.add('active');
-    } else {
-      const firstPane = targetPanel.querySelector('.sub-view-pane');
-      if (firstPane) firstPane.classList.add('active');
+    let targetPane = document.getElementById(`${prefix}${sub}`);
+    if (!targetPane) {
+      targetPane = targetPanel.querySelector('.sub-view-pane');
     }
+    if (targetPane) targetPane.classList.add('active');
 
     // Update in-module subnav tab buttons
     const subnavBar = document.getElementById(`subnav-${viewName}`);
@@ -647,20 +670,27 @@ function switchView(viewName, subViewName) {
         b.classList.remove('active');
         if (b.getAttribute('data-sub') === sub) b.classList.add('active');
       });
+      // Scroll active tab into view smoothly
+      const activeTab = subnavBar.querySelector('.subnav-tab-btn.active');
+      if (activeTab) {
+        activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
     }
 
     // Update sidebar sub-item active state
-    document.querySelectorAll(`#sub-${viewName} .sub-item`).forEach(si => {
-      si.classList.remove('active');
-      if (si.getAttribute('data-sub') === sub) si.classList.add('active');
-    });
+    document.querySelectorAll('.nav-sub-items .sub-item').forEach(si => si.classList.remove('active'));
+    const currentSubItem = document.querySelector(`.nav-sub-items .sub-item[data-view="${viewName}"][data-sub="${sub}"]`);
+    if (currentSubItem) currentSubItem.classList.add('active');
 
     // Make sure parent group is open
     const parentGroup = document.querySelector(`button[data-group="${viewName}"]`);
-    if (parentGroup) parentGroup.closest('.nav-group').classList.add('open');
+    if (parentGroup) {
+      document.querySelectorAll('.nav-group').forEach(g => g.classList.remove('open'));
+      parentGroup.closest('.nav-group').classList.add('open');
+    }
   }
 
-  // 3. Update main sidebar active state
+  // 3. Update main sidebar active state for top-level nav-btn
   document.querySelectorAll('.sidebar-nav .nav-btn').forEach(b => {
     b.classList.remove('active');
     if (b.getAttribute('data-view') === viewName) b.classList.add('active');
