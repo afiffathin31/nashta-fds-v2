@@ -582,17 +582,35 @@ function initNavigation() {
     });
   });
 
-  // Sidebar toggle button
+  // Sidebar toggle button (Handles both desktop collapse & mobile drawer)
   const sidebarToggle = document.getElementById('sidebar-toggle');
   if (sidebarToggle) {
-    sidebarToggle.addEventListener('click', () => {
-      document.body.classList.toggle('sidebar-collapsed');
+    sidebarToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (window.innerWidth <= 768) {
+        document.body.classList.toggle('sidebar-mobile-open');
+      } else {
+        document.body.classList.toggle('sidebar-collapsed');
+      }
       window.dispatchEvent(new Event('resize'));
+    });
+  }
+
+  // Sidebar backdrop click (Closes mobile drawer)
+  const backdrop = document.getElementById('sidebar-backdrop');
+  if (backdrop) {
+    backdrop.addEventListener('click', () => {
+      document.body.classList.remove('sidebar-mobile-open');
     });
   }
 }
 
 function switchView(viewName, subViewName) {
+  // Auto-close sidebar on mobile after choosing a menu
+  if (window.innerWidth <= 768) {
+    document.body.classList.remove('sidebar-mobile-open');
+  }
+
   state.currentView = viewName;
   const sub = subViewName || state.currentSubView[viewName] || 'overview';
   state.currentSubView[viewName] = sub;
