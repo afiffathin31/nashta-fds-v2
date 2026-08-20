@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FDS 2.0 — Fraud Detection System (NashTa × JendelaTax)</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- FontAwesome 6 (CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Chart.js 4 (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- ==================== SIDEBAR NAVIGATION ==================== -->
+    <aside class="sidebar" id="sidebar">
+      
+      <!-- Brand Header -->
+      <div class="sidebar-header">
+        <div class="brand-badge">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div class="brand-text">
+          <h2>NashTa FDS <span class="version-tag">v2.0</span></h2>
+          <p>Intelligence & Forensic Overlay</p>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        
+        <div class="nav-section-title">Core Forensics</div>
+
+        <!-- 1. Financial & UEBA -->
+        <div class="nav-group open" id="group-financial">
+          <button class="nav-group-header" data-group="financial">
+            <span class="group-title"><i class="fa-solid fa-user-gear text-danger"></i> 1. Financial & UEBA</span>
+            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+          </button>
+          <div class="nav-sub-items" id="sub-financial">
+            <a href="#" class="sub-item active" data-view="financial" data-sub="overview">Behavior Overview</a>
+            <a href="#" class="sub-item" data-view="financial" data-sub="profiling">User Profiling (UEBA)</a>
+            <a href="#" class="sub-item" data-view="financial" data-sub="offhours">Off-Hours Journal (23:45)</a>
+            <a href="#" class="sub-item" data-view="financial" data-sub="velocity">Velocity Drift Anomaly</a>
+            <a href="#" class="sub-item" data-view="financial" data-sub="tampering">Pre-Payment Master Edit</a>
+            <a href="#" class="sub-item" data-view="financial" data-sub="gl">CoA Integrity Health</a>
+          </div>
+        </div>
+
+        <!-- 2. Procurement & Vendor Forensics -->
+        <div class="nav-group" id="group-procurement">
+          <button class="nav-group-header" data-group="procurement">
+            <span class="group-title"><i class="fa-solid fa-building-shield text-warning"></i> 2. Vendor Forensics</span>
+            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+          </button>
+          <div class="nav-sub-items" id="sub-procurement">
+            <a href="#" class="sub-item" data-view="procurement" data-sub="dashboard">Vendor Risk Matrix</a>
+            <a href="#" class="sub-item" data-view="procurement" data-sub="ocr">Invoice OCR Forensics</a>
+            <a href="#" class="sub-item" data-view="procurement" data-sub="360">Vendor 360° Profile</a>
+            <a href="#" class="sub-item" data-view="procurement" data-sub="related">Related Party (Graph)</a>
+            <a href="#" class="sub-item" data-view="procurement" data-sub="tender">Bid Rigging (IP Match)</a>
+            <a href="#" class="sub-item" data-view="procurement" data-sub="split">Split Purchase Alert</a>
+            <a href="#" class="sub-item" data-view="procurement" data-sub="shell">Shell Entity Detector</a>
+          </div>
+        </div>
+
+        <!-- 3. Tax Intelligence & 3-Way Equalization -->
+        <div class="nav-group" id="group-tax">
+          <button class="nav-group-header" data-group="tax">
+            <span class="group-title"><i class="fa-solid fa-scale-balanced text-success"></i> 3. Tax Equalization</span>
+            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+          </button>
+          <div class="nav-sub-items" id="sub-tax">
+            <a href="#" class="sub-item" data-view="tax" data-sub="equalization">3-Way Equalization (GL-SPT)</a>
+            <a href="#" class="sub-item" data-view="tax" data-sub="efaktur">e-Faktur Live DJP Sync</a>
+            <a href="#" class="sub-item" data-view="tax" data-sub="ebupot">e-Bupot Unifikasi PPh</a>
+            <a href="#" class="sub-item" data-view="tax" data-sub="gap">Tax Gap & Timing Diff</a>
+            <a href="#" class="sub-item" data-view="tax" data-sub="dropzone">DJP XML/DB Dropzone</a>
+            <a href="#" class="sub-item" data-view="tax" data-sub="restitusi">Restitusi Risk Audit</a>
+          </div>
+        </div>
+
+        <!-- 4. Approvals & SoD Behavior -->
+        <div class="nav-group" id="group-approvals">
+          <button class="nav-group-header" data-group="approvals">
+            <span class="group-title"><i class="fa-solid fa-key text-info"></i> 4. SoD & Overrides</span>
+            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+          </button>
+          <div class="nav-sub-items" id="sub-approvals">
+            <a href="#" class="sub-item" data-view="approvals" data-sub="toxic">Toxic Combinations</a>
+            <a href="#" class="sub-item" data-view="approvals" data-sub="matrix">Interactive SoD Matrix</a>
+            <a href="#" class="sub-item" data-view="approvals" data-sub="override">Emergency Override Logs</a>
+            <a href="#" class="sub-item" data-view="approvals" data-sub="rubber">Rubber-Stamping Approver</a>
+            <a href="#" class="sub-item" data-view="approvals" data-sub="privilege">Privilege Creep Audit</a>
+          </div>
+        </div>
+
+        <!-- 5. Operational Transactions -->
+        <div class="nav-group" id="group-operational">
+          <button class="nav-group-header" data-group="operational">
+            <span class="group-title"><i class="fa-solid fa-store text-purple"></i> 5. Operational & POS</span>
+            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+          </button>
+          <div class="nav-sub-items" id="sub-operational">
+            <a href="#" class="sub-item" data-view="operational" data-sub="pos">POS Post-Customer Void</a>
+            <a href="#" class="sub-item" data-view="operational" data-sub="phantom">Phantom Sales (Month-End)</a>
+            <a href="#" class="sub-item" data-view="operational" data-sub="inventory">Inventory Shrinkage</a>
+            <a href="#" class="sub-item" data-view="operational" data-sub="delivery">Transit Loss & Delivery</a>
+            <a href="#" class="sub-item" data-view="operational" data-sub="return">Cash Refund Fraud</a>
+          </div>
+        </div>
+
+        <div class="nav-section-title">Investigation & Governance</div>
+
+        <!-- 6. Case Management -->
+        <button class="nav-btn" data-view="case_mgmt">
+          <i class="fa-solid fa-briefcase"></i> 6. Case Management & WBS
+        </button>
+
+        <!-- 7. Executive & POJK 12/2024 -->
+        <button class="nav-btn" data-view="executive">
+          <i class="fa-solid fa-chart-line"></i> 7. Executive (POJK 12/2024)
+        </button>
+
+        <!-- 8. Investigation Workspace (Detail) -->
+        <button class="nav-btn" data-view="investigation_detail">
+          <i class="fa-solid fa-folder-open text-danger"></i> 8. Dossier Workspace (Detail)
+        </button>
+
+        <!-- 9. Evidence Management Vault -->
+        <button class="nav-btn" data-view="evidence_mgmt">
+          <i class="fa-solid fa-vault text-warning"></i> 9. Evidence Vault (SHA-256)
+        </button>
+
+        <!-- 10. User & Access Control -->
+        <button class="nav-btn" data-view="user_access">
+          <i class="fa-solid fa-users-gear text-info"></i> 10. User & Access Control
+        </button>
+
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>JendelaTax & ERP CDC: <strong>Live Sync</strong></span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+    <div class="main-wrapper">
+      
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="breadcrumb-box">
+            <span class="breadcrumb-root">FDS 2.0 Overlay</span>
+            <span class="breadcrumb-sep">&gt;</span>
+            <span class="breadcrumb-current" id="current-breadcrumb">1. Financial Monitoring & UEBA</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Global Smart Search -->
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="global-search" placeholder="Cari User ERP, Invoice, Vendor, atau Case ID...">
+          </div>
+
+          <!-- Live Connector Badges -->
+          <div class="integration-badge" title="Terkoneksi langsung ke API DJP Resmi">
+            <span class="badge-live"></span>
+            <span>JendelaTax H2H</span>
+          </div>
+
+          <!-- User Profile -->
+          <div class="user-profile">
+            <div class="user-avatar">BS</div>
+            <div class="user-info">
+              <div class="user-name">Budi Santoso, CFE</div>
+              <div class="user-role">Lead Forensic Auditor</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body">
+
+        <!-- =========================================================================
+             MODULE 1: FINANCIAL MONITORING & UEBA
+             ========================================================================= -->
+        <section class="view-panel active" id="view-financial">
+          
+          <div class="module-header-banner">
+            <div class="module-banner-info">
+              <h1><i class="fa-solid fa-user-gear text-danger"></i> Financial Transaction & User Behavior (UEBA)</h1>
+              <p>Menganalisis anomali perilaku input pengguna ERP secara dinamis: transaksi off-hours (tengah malam), lonjakan kecepatan persetujuan (rubber-stamping), dan manipulasi master vendor sesaat sebelum pembayaran.</p>
+            </div>
+            <div class="module-banner-actions">
+              <button class="btn btn-secondary btn-sm" onclick="showToast('Memperbarui Profil Baseline UEBA 12 User ERP...')"><i class="fa-solid fa-arrows-rotate"></i> Re-Train Baseline</button>
+            </div>
+          </div>
+
+          <!-- Module Subnav Tabs -->
+          <div class="module-subnav-bar" id="subnav-financial">
+            <button class="subnav-tab-btn active" data-sub="overview"><i class="fa-solid fa-chart-pie"></i> Behavior Overview</button>
+            <button class="subnav-tab-btn" data-sub="profiling"><i class="fa-solid fa-user-check"></i> User Profiling (UEBA)</button>
+            <button class="subnav-tab-btn" data-sub="offhours"><i class="fa-solid fa-moon"></i> Off-Hours Journal (23:45)</button>
+            <button class="subnav-tab-btn" data-sub="velocity"><i class="fa-solid fa-bolt"></i> Velocity Drift Anomaly</button>
+            <button class="subnav-tab-btn" data-sub="tampering"><i class="fa-solid fa-user-pen"></i> Pre-Payment Master Edit</button>
+            <button class="subnav-tab-btn" data-sub="gl"><i class="fa-solid fa-book"></i> CoA Integrity Health</button>
+          </div>
+
+          <!-- SUB-VIEW 1.1: OVERVIEW -->
+          <div class="sub-view-pane active" id="fin-sub-overview">
+            
+            <div class="kpi-grid">
+              <div class="kpi-card">
+                <div class="kpi-top">
+                  <div class="kpi-icon red"><i class="fa-solid fa-user-slash"></i></div>
+                  <span class="kpi-trend up-red"><i class="fa-solid fa-arrow-trend-up"></i> +4 Kasus</span>
+                </div>
+                <div class="kpi-value font-mono">14 User</div>
+                <div class="kpi-label">Anomali Perilaku Kritis (UEBA)</div>
+                <div class="kpi-footer-note">Terdeteksi deviasi > 3.5σ dari kebiasaan normal</div>
+              </div>
+
+              <div class="kpi-card">
+                <div class="kpi-top">
+                  <div class="kpi-icon orange"><i class="fa-solid fa-clock"></i></div>
+                  <span class="kpi-trend up-red">Rp 1.25 M</span>
+                </div>
+                <div class="kpi-value font-mono">28 Entri</div>
+                <div class="kpi-label">Off-Hours Manual Journals</div>
+                <div class="kpi-footer-note">Posting jurnal penyesuaian pkl 22:00 - 04:00</div>
+              </div>
+
+              <div class="kpi-card">
+                <div class="kpi-top">
+                  <div class="kpi-icon purple"><i class="fa-solid fa-pen-ruler"></i></div>
+                  <span class="kpi-trend neutral">7 Insiden</span>
+                </div>
+                <div class="kpi-value font-mono">Rp 890 Juta</div>
+                <div class="kpi-label">Pre-Payment Master Edit</div>
+                <div class="kpi-footer-note">Ubah rekening vendor < 15 menit sebelum bayar</div>
+              </div>
+
+              <div class="kpi-card">
+                <div class="kpi-top">
+                  <div class="kpi-icon green"><i class="fa-solid fa-shield-check"></i></div>
+                  <span class="kpi-trend down-green">100% On Time</span>
+                </div>
+                <div class="kpi-value font-mono">Rp 4.2 M</div>
+                <div class="kpi-label">Kerugian Tercegah (Loss Prevented)</div>
+                <div class="kpi-footer-note">Pembayaran ganda & anomali langsung di-hold</div>
+              </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="grid-2col">
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-chart-line text-danger"></i> Tren Anomali Waktu Posting ERP (Jam Kerja vs Off-Hours)</h3>
+                    <p>Membandingkan volume transaksi normal (08:00 - 17:00) dengan lonjakan entri mencurigakan tengah malam.</p>
+                  </div>
+                </div>
+                <div style="height: 260px;">
+                  <canvas id="chart-fin-offhours"></canvas>
+                </div>
+              </div>
+
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-chart-pie text-warning"></i> Klaster Risiko Perilaku User</h3>
+                    <p>Proporsi anomali berdasarkan kategori deviasi kebiasaan ERP.</p>
+                  </div>
+                </div>
+                <div style="height: 260px;">
+                  <canvas id="chart-fin-user-donut"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table: High Risk Behavioral Outliers -->
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-list-check text-danger"></i> Daftar Anomali Perilaku Pengguna ERP (High Risk Outliers)</h3>
+                  <p>User yang terdeteksi melakukan tindakan menyimpang dari baseline kebiasaan normal sistem.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>User ID & Nama</th>
+                      <th>Peran di ERP</th>
+                      <th>Jenis Anomali Perilaku</th>
+                      <th>Waktu Kejadian</th>
+                      <th>Nilai Transaksi</th>
+                      <th>Skor Deviasi</th>
+                      <th>Tindakan Forensik</th>
+                      <th class="text-right">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-fin-ueba-body">
+                    <!-- Dynamic Rows via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SUB-VIEW 1.2: USER PROFILING (UEBA) -->
+          <div class="sub-view-pane" id="fin-sub-profiling">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-id-card-clip text-danger"></i> Profiling Deviasi Kebiasaan Staf Internal (Peer Group Baseline)</h3>
+                  <p>Menganalisis deviasi rata-rata volume, jam kerja, dan jenis transaksi user dibandingkan rekan satu divisi.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Nama Karyawan</th>
+                      <th>Divisi</th>
+                      <th>Normal Baseline (Avg/Day)</th>
+                      <th>Aktivitas Terakhir</th>
+                      <th>Penyimpangan Pola</th>
+                      <th>Status Risiko</th>
+                      <th class="text-right">Inspeksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-fin-profiling-body">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 1.3: OFF-HOURS JOURNAL -->
+          <div class="sub-view-pane" id="fin-sub-offhours">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-moon text-danger"></i> Log Jurnal Penyesuaian Manual Tengah Malam (22:00 - 04:00)</h3>
+                  <p>Entri jurnal debit/kredit angka bulat tanpa memo persetujuan audit.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-fin-offhours-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 1.4: VELOCITY -->
+          <div class="sub-view-pane" id="fin-sub-velocity">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-bolt text-danger"></i> Deteksi Lonjakan Kecepatan Persetujuan (Rubber-Stamping Approval)</h3>
+                  <p>Approver yang menyetujui transaksi bernilai besar dalam rentang waktu kurang dari 5 detik per dokumen.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-fin-velocity-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 1.5: TAMPERING -->
+          <div class="sub-view-pane" id="fin-sub-tampering">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-user-pen text-danger"></i> Log Perubahan Rekening Vendor Master Sesaat Sebelum Pembayaran</h3>
+                  <p>Pola 'Switch-and-Revert' nomor rekening bank vendor di database master data ERP.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-fin-tampering-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 1.6: GL COA -->
+          <div class="sub-view-pane" id="fin-sub-gl">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-book-journal-whills text-danger"></i> Rekonsiliasi Saldo Buku Besar & Clearing Account Aging</h3>
+                  <p>Pengawasan akun perantara (suspense account) yang menumpuk saldo tidak seimbang.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-fin-gl-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- =========================================================================
+             MODULE 2: PROCUREMENT & VENDOR FORENSICS (OCR & COLLUSION)
+             ========================================================================= -->
+        <section class="view-panel" id="view-procurement">
+          
+          <div class="module-header-banner">
+            <div class="module-banner-info">
+              <h1><i class="fa-solid fa-building-shield text-warning"></i> Procurement Risk & AI Document Forensics</h1>
+              <p>Mendeteksi invoice rekayasa (fabricated documents) via OCR analitik gambar & matematika, kolusi lelang (bid rigging IP identical), pemecahan PO (split purchase), dan hubungan rahasia orang dalam.</p>
+            </div>
+            <div class="module-banner-actions">
+              <button class="btn btn-primary btn-sm" onclick="openOcrInspectorModal('INV-2024-00587')"><i class="fa-solid fa-wand-magic-sparkles"></i> Run AI OCR Inspector</button>
+            </div>
+          </div>
+
+          <!-- Subnav Tabs -->
+          <div class="module-subnav-bar" id="subnav-procurement">
+            <button class="subnav-tab-btn active" data-sub="dashboard"><i class="fa-solid fa-chart-line"></i> Vendor Risk Matrix</button>
+            <button class="subnav-tab-btn" data-sub="ocr"><i class="fa-solid fa-file-invoice-dollar"></i> Invoice OCR Forensics</button>
+            <button class="subnav-tab-btn" data-sub="360"><i class="fa-solid fa-circle-user"></i> Vendor 360° Profile</button>
+            <button class="subnav-tab-btn" data-sub="related"><i class="fa-solid fa-diagram-project"></i> Related Party (Graph)</button>
+            <button class="subnav-tab-btn" data-sub="tender"><i class="fa-solid fa-gavel"></i> Bid Rigging (IP Match)</button>
+            <button class="subnav-tab-btn" data-sub="split"><i class="fa-solid fa-scissors"></i> Split Purchase Alert</button>
+            <button class="subnav-tab-btn" data-sub="shell"><i class="fa-solid fa-ghost"></i> Shell Entity Detector</button>
+          </div>
+
+          <!-- SUB-VIEW 2.1: DASHBOARD -->
+          <div class="sub-view-pane active" id="proc-sub-dashboard">
+            
+            <div class="kpi-grid">
+              <div class="kpi-card">
+                <div class="kpi-top">
+                  <div class="kpi-icon red"><i class="fa-solid fa-file-circle-xmark"></i></div>
+                  <span class="kpi-trend up-red">3 Dokumen</span>
+                </div>
+                <div class="kpi-value font-mono">98% Match</div>
+                <div class="kpi-label">Invoice Terindikasi Fabricated</div>
+                <div class="kpi-footer-note">Inkonsistensi piksel ELA & font berbeda terdeteksi</div>
+              </div>
+
+              <div class="kpi-card">
+                <div class="kpi-top">
+                  <div class="kpi-icon orange"><i class="fa-solid fa-network-wired"></i></div>
+                  <span class="kpi-trend up-red">4 Rekanan</span>
+                </div>
+                <div class="kpi-value font-mono">Rp 4.8 M</div>
+                <div class="kpi-label">Eksposur Benturan Kepentingan</div>
+                <div class="kpi-footer-note">Kesamaan nomor telepon/rekening dengan staf internal</div>
+              </div>
+
+              <div class="kpi-card">
+                <div class="kpi-top">
+                  <div class="kpi-icon blue"><i class="fa-solid fa-laptop-code"></i></div>
+                  <span class="kpi-trend neutral">2 Tender</span>
+                </div>
+                <div class="kpi-value font-mono">Identical IP</div>
+                <div class="kpi-label">Indikasi Kolusi Lelang (Bid Rigging)</div>
+                <div class="kpi-footer-note">3 vendor mengirim penawaran dari IP Address sama</div>
+              </div>
+
+              <div class="kpi-card">
+                <div class="kpi-top">
+                  <div class="kpi-icon purple"><i class="fa-solid fa-split"></i></div>
+                  <span class="kpi-trend up-red">12 PO</span>
+                </div>
+                <div class="kpi-value font-mono">Rp 1.14 M</div>
+                <div class="kpi-label">Split Purchase (Avoid Approval)</div>
+                <div class="kpi-footer-note">PO bernilai @ Rp 95 Juta dipecah dalam 48 jam</div>
+              </div>
+            </div>
+
+            <!-- Scatter Plot & OCR Spotlight -->
+            <div class="grid-2col">
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-chart-scatter text-danger"></i> Peta Risiko Rekanan (Dampak Finansial vs Probabilitas)</h3>
+                    <p>Kuadran identifikasi vendor kritis berdasarkan skor analitik gabungan.</p>
+                  </div>
+                </div>
+                <div style="height: 280px;">
+                  <canvas id="chart-proc-scatter"></canvas>
+                </div>
+              </div>
+
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-wand-magic-sparkles text-danger"></i> AI Document Forensics Spotlight</h3>
+                    <p>Hasil pemindaian berkas invoice mencurigakan terkini.</p>
+                  </div>
+                </div>
+                <div class="ocr-doc-preview">
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 8px; margin-bottom: 10px;">
+                    <strong style="color: #fca5a5; font-size: 0.85rem;"><i class="fa-solid fa-file-pdf"></i> INV-2024-00587.pdf</strong>
+                    <span class="badge-tag red">TAMPERED</span>
+                  </div>
+                  <p style="font-size: 0.75rem; color: #94a3b8;">Vendor: <strong>PT Maju Bersama</strong> | Nilai: <strong>Rp 250.000.000</strong></p>
+                  
+                  <div class="ocr-tamper-box">
+                    <p style="font-size: 0.72rem; color: #fecaca; margin-bottom: 4px;"><strong>Bank Mandiri: 137-00-998811-2</strong></p>
+                    <p style="font-size: 0.68rem; color: #cbd5e1;">Analisis Forensik: Font angka rekening berbeda 1.4pt dan memiliki tingkat kompresi piksel berlebih (Photoshop Overlay).</p>
+                  </div>
+
+                  <button class="btn btn-outline-danger btn-xs" style="width: 100%; margin-top: 8px;" onclick="openOcrInspectorModal('INV-2024-00587')">
+                    <i class="fa-solid fa-eye"></i> Buka Forensics Inspector Penuh &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table: High Risk Vendor List -->
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-triangle-exclamation text-danger"></i> Daftar Rekanan Berisiko Tinggi & Rekomendasi Audit</h3>
+                  <p>Vendor yang gagal melewati uji tuntas legalitas, deteksi cangkang, atau forensik dokumen.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Nama Vendor</th>
+                      <th>NPWP & NIB</th>
+                      <th>Total PO Spend</th>
+                      <th>Indikator Red Flags</th>
+                      <th>OCR / ELA Score</th>
+                      <th>Status Mitigasi</th>
+                      <th class="text-right">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-proc-vendor-body">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SUB-VIEW 2.2: OCR FORENSICS -->
+          <div class="sub-view-pane" id="proc-sub-ocr">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-microscope text-danger"></i> Antrean Analisis Forensik Dokumen & OCR Checksum</h3>
+                  <p>Validasi kalkulasi matematika otomatis (DPP + PPN 11% == Total) dan pencocokan nomor rekening fisik vs ERP.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-proc-ocr-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 2.3: VENDOR 360 -->
+          <div class="sub-view-pane" id="proc-sub-360">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-id-badge text-danger"></i> Vendor 360° Deep-Dive Profiling</h3>
+                  <p>Data legalitas lengkap, pengurus UBO, riwayat rekening bank, dan daftar kontrak pengadaan.</p>
+                </div>
+              </div>
+              <div id="vendor-360-container">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 2.4: RELATED PARTY -->
+          <div class="sub-view-pane" id="proc-sub-related">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-diagram-project text-danger"></i> Peta Benturan Kepentingan & Keterkaitan Orang Dalam</h3>
+                  <p>Mendeteksi irisan nomor telepon, rekening perantara, dan alamat domisili antara vendor dan karyawan internal.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-proc-related-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 2.5: TENDER -->
+          <div class="sub-view-pane" id="proc-sub-tender">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-gavel text-danger"></i> Analisis Kolusi Lelang (Bid Rigging & Identical IP Uploads)</h3>
+                  <p>Penawaran dari beberapa vendor peserta lelang yang diunggah dari alamat IP dan perangkat yang sama.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-proc-tender-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 2.6: SPLIT -->
+          <div class="sub-view-pane" id="proc-sub-split">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-scissors text-danger"></i> Deteksi Pemecahan Pesanan (Split Purchase Detection)</h3>
+                  <p>PO berulang di bawah pagu approval Rp 100 Juta yang diterbitkan dalam selang waktu berdekatan.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-proc-split-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 2.7: SHELL -->
+          <div class="sub-view-pane" id="proc-sub-shell">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-ghost text-danger"></i> Deteksi Perusahaan Cangkang / Fiktif (Shell Company)</h3>
+                  <p>Vendor tanpa staf terdaftar BPJS, alamat kantor virtual kosong, dan tanpa rekam jejak operasional.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-proc-shell-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- =========================================================================
+             MODULE 3: TAX INTELLIGENCE & 3-WAY EQUALIZATION (NASH TA x JENDELATAX)
+             ========================================================================= -->
+        <section class="view-panel" id="view-tax">
+          
+          <div class="module-header-banner">
+            <div class="module-banner-info">
+              <h1><i class="fa-solid fa-scale-balanced text-success"></i> 3-Way Tax Equalization & DJP Compliance</h1>
+              <p>Didukung integrasi resmi JendelaTax (PJAP): Rekonsiliasi otomatis 3 arah antara Buku Besar (GL ERP) $\leftrightarrow$ SPT Masa PPN/PPh $\leftrightarrow$ Live Server DJP untuk mendeteksi selisih omset, faktur fiktif, dan risiko denda pajak.</p>
+            </div>
+            <div class="module-banner-actions">
+              <button class="btn btn-primary btn-sm" onclick="triggerTaxSync()"><i class="fa-solid fa-rotate"></i> Sync DJP & Equalize</button>
+              <button class="btn btn-secondary btn-sm" onclick="openDropzoneModal()"><i class="fa-solid fa-file-import"></i> Upload DJP XML</button>
+            </div>
+          </div>
+
+          <!-- Subnav Tabs -->
+          <div class="module-subnav-bar" id="subnav-tax">
+            <button class="subnav-tab-btn active" data-sub="equalization"><i class="fa-solid fa-arrows-split-up-and-left"></i> 3-Way Equalization (GL-SPT-DJP)</button>
+            <button class="subnav-tab-btn" data-sub="efaktur"><i class="fa-solid fa-file-invoice"></i> e-Faktur Live DJP</button>
+            <button class="subnav-tab-btn" data-sub="ebupot"><i class="fa-solid fa-receipt"></i> e-Bupot Unifikasi PPh</button>
+            <button class="subnav-tab-btn" data-sub="gap"><i class="fa-solid fa-chart-column"></i> Tax Gap & Timing Diff</button>
+            <button class="subnav-tab-btn" data-sub="dropzone"><i class="fa-solid fa-upload"></i> DJP XML/DB Dropzone</button>
+            <button class="subnav-tab-btn" data-sub="restitusi"><i class="fa-solid fa-hand-holding-dollar"></i> Restitusi Risk Audit</button>
+          </div>
+
+          <!-- SUB-VIEW 3.1: 3-WAY EQUALIZATION -->
+          <div class="sub-view-pane active" id="tax-sub-equalization">
+            
+            <!-- 3-Way Equalization Cards -->
+            <div class="equalization-box">
+              <div class="eq-column gl">
+                <div class="eq-header">
+                  <span>1. Buku Besar (GL ERP)</span>
+                  <i class="fa-solid fa-book text-info"></i>
+                </div>
+                <div class="eq-val text-info" id="eq-gl-val">Rp 58.450.000.000</div>
+                <p style="font-size: 0.72rem; color: #64748b; margin-top: 6px;">Total Peredaran Usaha (Akun 4101-Sales GL)</p>
+              </div>
+
+              <div class="eq-column spt">
+                <div class="eq-header">
+                  <span>2. Pelaporan SPT Masa 1111</span>
+                  <i class="fa-solid fa-file-lines text-warning"></i>
+                </div>
+                <div class="eq-val text-warning" id="eq-spt-val">Rp 56.950.000.000</div>
+                <p style="font-size: 0.72rem; color: #64748b; margin-top: 6px;">DPP Penyerahan Terutang PPN (Form 1111 AB)</p>
+              </div>
+
+              <div class="eq-column djp">
+                <div class="eq-header">
+                  <span>3. Validasi Server DJP</span>
+                  <i class="fa-solid fa-building-columns text-success"></i>
+                </div>
+                <div class="eq-val text-success" id="eq-djp-val">Rp 56.950.000.000</div>
+                <p style="font-size: 0.72rem; color: #64748b; margin-top: 6px;">Total Faktur Keluaran Approved di JendelaTax H2H</p>
+              </div>
+            </div>
+
+            <!-- Equalization Alert Box -->
+            <div class="content-card" style="border-left: 4px solid var(--danger);">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <h4 style="font-size: 0.95rem; font-weight: 700; color: #b91c1c; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Selisih Ekualisasi Terdeteksi: Rp 1.500.000.000 (Potensi Under-Reporting PPN)
+                  </h4>
+                  <p style="font-size: 0.78rem; color: #475569; margin-top: 4px;">
+                    Ditemukan selisih antara pencatatan penjualan di GL dengan pelaporan SPT Masa PPN. Sistem membedakan selisih waktu (timing difference Rp 1.25M) dan transaksi tanpa faktur (un-invoiced sales Rp 250M).
+                  </p>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="showToast('Membuat Berita Acara Rekonsiliasi Fiskal...')">Auto-Reconcile</button>
+              </div>
+            </div>
+
+            <!-- Table: 3-Way Equalization Breakdown -->
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-table-list text-success"></i> Rincian Ekualisasi Pajak Lintas Pos Transaksi</h3>
+                  <p>Ekualisasi PPN Penyerahan, Objek PPh 21 (Beban Gaji), dan Objek PPh 23 (Beban Jasa).</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Pos Pajak & Periode</th>
+                      <th>Nilai Buku Besar (GL)</th>
+                      <th>Nilai SPT Terlapor</th>
+                      <th>Nilai Server DJP</th>
+                      <th>Selisih (Gap)</th>
+                      <th>Klasifikasi Selisih</th>
+                      <th class="text-right">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-tax-equalization-body">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SUB-VIEW 3.2: E-FAKTUR -->
+          <div class="sub-view-pane" id="tax-sub-efaktur">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-file-invoice text-success"></i> Status Validasi Faktur Pajak Masukan (API JendelaTax)</h3>
+                  <p>Mendeteksi faktur dibatalkan sepihak pasca bayar dan faktur fiktif tanpa penyerahan BKP.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-tax-efaktur-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 3.3: E-BUPOT -->
+          <div class="sub-view-pane" id="tax-sub-ebupot">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-receipt text-success"></i> Pengawasan Bukti Potong PPh (e-Bupot Unifikasi)</h3>
+                  <p>Memastikan seluruh pemotongan PPh 21/23/4(2) atas vendor telah disetorkan dengan NTPN valid.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-tax-ebupot-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 3.4: GAP -->
+          <div class="sub-view-pane" id="tax-sub-gap">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-chart-column text-success"></i> Analisis Tax Gap & Selisih Waktu Fiskal vs Komersial</h3>
+                  <p>Memisahkan perbedaan temporer (timing differences) dengan perbedaan permanen berisiko SKP.</p>
+                </div>
+              </div>
+              <div style="height: 280px;">
+                <canvas id="chart-tax-gap"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 3.5: DROPZONE -->
+          <div class="sub-view-pane" id="tax-sub-dropzone">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-file-import text-success"></i> DJP XML / DB Backup File Bulk Dropzone</h3>
+                  <p>Upload file arsip XML/CSV ekspor aplikasi e-Faktur/e-Bupot jika integrasi API dibatasi IT internal.</p>
+                </div>
+              </div>
+              <div style="border: 2px dashed #94a3b8; border-radius: var(--radius-md); padding: 40px; text-align: center; background-color: #f8fafc;">
+                <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.5rem; color: #64748b; margin-bottom: 12px;"></i>
+                <h4>Tarik & Letakkan File Arsip DJP (.XML / .CSV / .DB) di Sini</h4>
+                <p style="font-size: 0.8rem; color: #94a3b8; margin: 6px 0 16px;">Sistem akan mem-parsing ribuan data faktur secara instan tanpa perlu akses server langsung.</p>
+                <button class="btn btn-primary btn-sm" onclick="showToast('Simulasi upload file XML DJP berhasil diparsing 4.200 faktur!')"><i class="fa-solid fa-folder-open"></i> Pilih Berkas File</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 3.6: RESTITUSI -->
+          <div class="sub-view-pane" id="tax-sub-restitusi">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-hand-holding-dollar text-success"></i> Audit Risiko Klaim Restitusi Pajak Lebih Bayar</h3>
+                  <p>Memeriksa rantai vendor penerbit faktur masukan sebelum pengajuan restitusi PPN ke KPP.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-tax-restitusi-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- =========================================================================
+             MODULE 4: APPROVALS, SOD & OVERRIDE BEHAVIOR
+             ========================================================================= -->
+        <section class="view-panel" id="view-approvals">
+          
+          <div class="module-header-banner">
+            <div class="module-banner-info">
+              <h1><i class="fa-solid fa-key text-info"></i> Approvals, SoD Matrix & Override Behavior</h1>
+              <p>Mendeteksi pengguna dengan kombinasi hak akses terlarang (Toxic Combinations), pelanggaran pemisahan tugas (Segregation of Duties), penyalahgunaan override darurat, dan perilaku rubber-stamping.</p>
+            </div>
+          </div>
+
+          <!-- Subnav Tabs -->
+          <div class="module-subnav-bar" id="subnav-approvals">
+            <button class="subnav-tab-btn active" data-sub="toxic"><i class="fa-solid fa-skull-crossbones"></i> Toxic Combinations</button>
+            <button class="subnav-tab-btn" data-sub="matrix"><i class="fa-solid fa-table-cells"></i> Interactive SoD Matrix</button>
+            <button class="subnav-tab-btn" data-sub="override"><i class="fa-solid fa-unlock-keyhole"></i> Emergency Override Logs</button>
+            <button class="subnav-tab-btn" data-sub="rubber"><i class="fa-solid fa-stamp"></i> Rubber-Stamping Approver</button>
+            <button class="subnav-tab-btn" data-sub="privilege"><i class="fa-solid fa-user-shield"></i> Privilege Creep Audit</button>
+          </div>
+
+          <!-- SUB-VIEW 4.1: TOXIC COMBINATION -->
+          <div class="sub-view-pane active" id="app-sub-toxic">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-skull-crossbones text-danger"></i> User Aktif dengan Hak Akses Ganda Terlarang (Toxic Privileges)</h3>
+                  <p>Kombinasi wewenang yang memungkinkan eksekusi fraud end-to-end tanpa kontrol pihak lain.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>User ID & Nama</th>
+                      <th>Jabatan Formal</th>
+                      <th>Kombinasi Akses Terlarang</th>
+                      <th>Jumlah Eksekusi Transaksi</th>
+                      <th>Tingkat Keparahan</th>
+                      <th class="text-right">Rekomendasi Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-app-toxic-body">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 4.2: MATRIX -->
+          <div class="sub-view-pane" id="app-sub-matrix">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-table-cells text-info"></i> Matriks Pemisahan Tugas (Segregation of Duties Matrix)</h3>
+                  <p>Pemetaan matriks wewenang lintas fungsi pengadaan, keuangan, gudang, dan akuntansi.</p>
+                </div>
+              </div>
+              <div class="sod-matrix-grid" id="sod-full-matrix-container">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 4.3: OVERRIDE -->
+          <div class="sub-view-pane" id="app-sub-override">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-unlock-keyhole text-danger"></i> Log Pelampauan Wewenang Darurat (Emergency Override)</h3>
+                  <p>Mencatat transaksi yang diloloskan tanpa memo justifikasi resmi.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-app-override-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 4.4: RUBBER -->
+          <div class="sub-view-pane" id="app-sub-rubber">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-stamp text-danger"></i> Deteksi Penyetuju 'Asal Klik' (Rubber-Stamping Behavior)</h3>
+                  <p>Waktu buka dokumen rata-rata < 3 detik untuk transaksi bernilai di atas Rp 100 Juta.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-app-rubber-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 4.5: PRIVILEGE -->
+          <div class="sub-view-pane" id="app-sub-privilege">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-user-shield text-info"></i> Penumpukan Hak Akses Berlebih (Privilege Creep Audit)</h3>
+                  <p>Akun mantan karyawan, mutasi jabatan tanpa pencabutan role lama, dan super-admin dormant.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-app-privilege-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- =========================================================================
+             MODULE 5: OPERATIONAL & PHANTOM SALES TRANSACTIONS
+             ========================================================================= -->
+        <section class="view-panel" id="view-operational">
+          
+          <div class="module-header-banner">
+            <div class="module-banner-info">
+              <h1><i class="fa-solid fa-store text-purple"></i> Operational Transactions & Phantom Sales</h1>
+              <p>Mendeteksi kecurangan pada titik penjualan ritel (POS kasir void pasca-pelanggan keluar), rekayasa omset akhir bulan (Phantom Sales), susut inventori gudang (shrinkage), dan kebocoran ekspedisi.</p>
+            </div>
+          </div>
+
+          <!-- Subnav Tabs -->
+          <div class="module-subnav-bar" id="subnav-operational">
+            <button class="subnav-tab-btn active" data-sub="pos"><i class="fa-solid fa-cash-register"></i> POS Post-Customer Void</button>
+            <button class="subnav-tab-btn" data-sub="phantom"><i class="fa-solid fa-ghost"></i> Phantom Sales (Month-End)</button>
+            <button class="subnav-tab-btn" data-sub="inventory"><i class="fa-solid fa-boxes-stacked"></i> Inventory Shrinkage</button>
+            <button class="subnav-tab-btn" data-sub="delivery"><i class="fa-solid fa-truck"></i> Transit Loss & Delivery</button>
+            <button class="subnav-tab-btn" data-sub="return"><i class="fa-solid fa-rotate-left"></i> Cash Refund Fraud</button>
+          </div>
+
+          <div class="sub-view-pane active" id="ops-sub-pos">
+            <div class="grid-2col">
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-chart-area text-danger"></i> Tren Anomali Void POS per Jam Kasir</h3>
+                    <p>Lonjakan void pada saat pergantian shift kasir dan akhir jam buka toko.</p>
+                  </div>
+                </div>
+                <div style="height: 260px;">
+                  <canvas id="chart-ops-pos"></canvas>
+                </div>
+              </div>
+
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-triangle-exclamation text-danger"></i> Kasir dengan Void Ratio Abnormal</h3>
+                    <p>Deviasi > 3x rata-rata outlet.</p>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="data-table" id="table-ops-cashier-table">
+                    <!-- Populated via JS -->
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-view-pane" id="ops-sub-phantom">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-ghost text-danger"></i> Deteksi Penjualan Semu Akhir Bulan (Phantom Sales)</h3>
+                  <p>Pesanan fiktif tanggal 30/31 yang dibatalkan pada tanggal 1/2 bulan berikutnya demi bonus KPI.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-ops-phantom-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-view-pane" id="ops-sub-inventory">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-boxes-stacked text-danger"></i> Selisih Stock Opname Fisik vs Sistem ERP (Shrinkage)</h3>
+                  <p>Penyusutan inventori barang bernilai tinggi (high-value SKUs).</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-ops-inventory-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-view-pane" id="ops-sub-delivery">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-truck text-danger"></i> Selisih Surat Jalan Gudang vs Penerimaan Cabang</h3>
+                  <p>Kebocoran barang dalam perjalanan ekspedisi logistik.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-ops-delivery-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-view-pane" id="ops-sub-return">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-rotate-left text-danger"></i> Anomali Pengembalian Kas Tunai (Cash Refund Fraud)</h3>
+                  <p>Retur barang tanpa struk asli pembeli.</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-ops-return-table">
+                  <!-- Populated via JS -->
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- =========================================================================
+             MODULE 6: CASE MANAGEMENT & WBS INTEGRATION
+             ========================================================================= -->
+        <section class="view-panel" id="view-case_mgmt">
+          <div class="module-header-banner">
+            <div class="module-banner-info">
+              <h1><i class="fa-solid fa-briefcase text-primary"></i> Case Management & Whistleblower Integration</h1>
+              <p>Pusat triase berkas perkara investigasi audit, penugasan investigator, pelacakan SLA, dan integrasi laporan whistleblower terenkripsi.</p>
+            </div>
+            <div class="module-banner-actions">
+              <button class="btn btn-primary btn-sm" onclick="openNewCaseModal()"><i class="fa-solid fa-plus"></i> Buka Kasus Baru</button>
+            </div>
+          </div>
+
+          <div class="content-card">
+            <div class="content-card-header">
+              <div class="card-title-group">
+                <h3><i class="fa-solid fa-inbox text-danger"></i> Antrean Kasus Investigasi Aktif (Triage Inbox)</h3>
+                <p>Seluruh temuan kritis dari 5 modul analitik yang sedang ditangani tim auditor.</p>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Case ID</th>
+                    <th>Judul Perkara</th>
+                    <th>Modul Sumber</th>
+                    <th>Entitas / Target</th>
+                    <th>Nilai Eksposur</th>
+                    <th>Severity</th>
+                    <th>Status Berkas</th>
+                    <th>Lead Investigator</th>
+                    <th class="text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="table-case-queue-body">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =========================================================================
+             MODULE 7: EXECUTIVE DASHBOARD & POJK 12/2024 COMPLIANCE
+             ========================================================================= -->
+        <section class="view-panel" id="view-executive">
+          <div class="module-header-banner">
+            <div class="module-banner-info">
+              <h1><i class="fa-solid fa-chart-line text-success"></i> Executive Dashboard & POJK 12/2024 Reporting</h1>
+              <p>Laporan makro Direksi & Komite Audit: Nilai kerugian tercegah (Loss Prevented Rp 28.45 M), Peta Risiko Cabang Wilayah, dan Kepatuhan 4 Pilar Anti-Fraud OJK.</p>
+            </div>
+            <div class="module-banner-actions">
+              <button class="btn btn-primary btn-sm" onclick="showToast('Mengunduh Laporan Anti-Fraud POJK 12/2024 (PDF)...')"><i class="fa-solid fa-file-pdf"></i> Ekspor Laporan OJK</button>
+            </div>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <div class="kpi-icon green"><i class="fa-solid fa-shield-halved"></i></div>
+                <span class="kpi-trend down-green">+18.5% YoY</span>
+              </div>
+              <div class="kpi-value font-mono text-success">Rp 28.45 M</div>
+              <div class="kpi-label">Total Dana Diselamatkan (Loss Prevented)</div>
+              <div class="kpi-footer-note">Mitigasi pembayaran ganda & vendor kolusif</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <div class="kpi-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <span class="kpi-trend up-red">38 Kasus</span>
+              </div>
+              <div class="kpi-value font-mono text-danger">Rp 102.34 M</div>
+              <div class="kpi-label">Total Nilai Eksposur Risiko</div>
+              <div class="kpi-footer-note">Sedang dalam penanganan investigasi audit</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <div class="kpi-icon blue"><i class="fa-solid fa-building-columns"></i></div>
+                <span class="kpi-trend neutral">4 Pilar Ready</span>
+              </div>
+              <div class="kpi-value font-mono">100% Sesuai</div>
+              <div class="kpi-label">Kesiapan Regulasi POJK 12/2024</div>
+              <div class="kpi-footer-note">Pencegahan, Deteksi, Investigasi, Evaluasi</div>
+            </div>
+          </div>
+
+          <div class="grid-equal-2col">
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-chart-line text-success"></i> Tren Pemulihan & Kerugian Tercegah (Bulanan)</h3>
+                  <p>Pertumbuhan akumulasi dana operasional yang berhasil diselamatkan.</p>
+                </div>
+              </div>
+              <div style="height: 260px;">
+                <canvas id="chart-exec-recovery"></canvas>
+              </div>
+            </div>
+
+            <div class="content-card">
+              <div class="content-card-header">
+                <div class="card-title-group">
+                  <h3><i class="fa-solid fa-map-location-dot text-danger"></i> Peta Sebaran Risiko Wilayah Operasional (Heatmap)</h3>
+                  <p>Peringkat skor risiko cabang di seluruh Indonesia.</p>
+                </div>
+              </div>
+              <div style="height: 260px;">
+                <canvas id="chart-exec-regional"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =========================================================================
+             MODULE 8: INVESTIGATION WORKSPACE (DEEP-DIVE AL-2024-0516)
+             ========================================================================= -->
+        <section class="view-panel" id="view-investigation_detail">
+          
+          <div class="content-card" style="background: linear-gradient(135deg, #0f172a, #1e293b); color: #fff; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                  <span class="badge-tag red">HIGH SEVERITY</span>
+                  <span class="badge-tag orange">IN PROGRESS</span>
+                  <span class="badge-tag blue">CASE ID: AL-2024-0516</span>
+                </div>
+                <h2 style="font-size: 1.3rem; font-weight: 800;">Pembayaran Ganda ke Rekening Baru Vendor PT Maju Bersama</h2>
+                <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;">Target: <strong>PT Maju Bersama</strong> | Oknum Pembuat: <strong>Rudi Hartono (Staff AP)</strong> | Nilai Kerugian Terancam: <strong class="text-danger font-mono font-bold">Rp 250.000.000</strong></p>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-outline-danger btn-sm" onclick="showToast('Ekspor berkas perkara PDF lengkap...')"><i class="fa-solid fa-file-pdf"></i> Ekspor Dossier</button>
+                <button class="btn btn-primary btn-sm" onclick="showToast('Kasus berhasil diselesaikan & diarsipkan.')"><i class="fa-solid fa-check"></i> Selesaikan Kasus</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2col">
+            <!-- Left: Graph & Hypothesis -->
+            <div>
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-diagram-project text-danger"></i> Network Graph & Aliran Dana Multi-Hop (SVG Interaktif)</h3>
+                    <p>Memetakan hubungan antara Rekening Resmi BCA, Rekening Siluman Mandiri, dan Akun Staff AP.</p>
+                  </div>
+                </div>
+                <div class="graph-container" id="workspace-graph-container">
+                  <!-- SVG Graph injected via JS -->
+                </div>
+              </div>
+
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-robot text-danger"></i> AI Fraud Hypothesis & Temuan Forensik</h3>
+                  </div>
+                </div>
+                <div style="background-color: #f8fafc; border-left: 4px solid var(--primary); padding: 16px; border-radius: var(--radius-md); font-size: 0.82rem; line-height: 1.6;">
+                  <strong>Kesimpulan Analisis AI (Score Anomali: 92/100):</strong>
+                  <p style="color: #334155; margin-top: 6px;">
+                    1. Staf AP Rudi Hartono mengubah data rekening vendor PT Maju Bersama di master data SAP pada pukul 10:20 WIB menjadi Bank Mandiri rek. pribadi.<br>
+                    2. Tagihan INV-2024-00587 diterbitkan ulang dengan nominal identik Rp 250.000.000 yang sebelumnya sudah dibayarkan via Bank BCA pada 15 Mei 2026.<br>
+                    3. Berkas PDF invoice yang diunggah menunjukkan jejak editan font pada nomor rekening (Error Level Analysis: 98% Fabricated).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Timeline & Evidence -->
+            <div>
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-timeline text-danger"></i> Kronologi Kejadian (Timeline)</h3>
+                  </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.78rem;">
+                  <div style="border-left: 2px solid var(--primary); padding-left: 12px; position: relative;">
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--primary); position: absolute; left: -5px; top: 4px;"></div>
+                    <strong class="font-mono text-muted">30 Mei 2026 10:20 WIB</strong>
+                    <p style="font-weight: 700; color: #0f172a;">User Rudi H. memodifikasi nomor rekening di Master Vendor</p>
+                  </div>
+                  <div style="border-left: 2px solid var(--primary); padding-left: 12px; position: relative;">
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--primary); position: absolute; left: -5px; top: 4px;"></div>
+                    <strong class="font-mono text-muted">30 Mei 2026 10:30 WIB</strong>
+                    <p style="font-weight: 700; color: #0f172a;">Pengajuan payment transfer Rp 250 Juta via RTGS</p>
+                  </div>
+                  <div style="border-left: 2px solid var(--success); padding-left: 12px; position: relative;">
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--success); position: absolute; left: -5px; top: 4px;"></div>
+                    <strong class="font-mono text-success">30 Mei 2026 10:32 WIB</strong>
+                    <p style="font-weight: 700; color: #065f46;">FDS Engine menahan transaksi otomatis (Payment Hold Active)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="content-card">
+                <div class="content-card-header">
+                  <div class="card-title-group">
+                    <h3><i class="fa-solid fa-paperclip text-danger"></i> Barang Bukti Terlampir (Hash SHA-256)</h3>
+                  </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;" id="workspace-evidence-list">
+                  <!-- Populated via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- =========================================================================
+             MODULE 9: EVIDENCE MANAGEMENT VAULT (SHA-256)
+             ========================================================================= -->
+        <section class="view-panel" id="view-evidence_mgmt">
+          <div class="module-header-banner">
+            <div class="module-banner-info">
+              <h1><i class="fa-solid fa-vault text-warning"></i> Digital Evidence Vault (Chain of Custody)</h1>
+              <p>Brankas penyimpanan dokumen bukti elektronik terenkripsi dengan jaminan integritas hash kriptografis SHA-256 untuk kesiapan penegakan hukum dan persidangan.</p>
+            </div>
+            <div class="module-banner-actions">
+              <button class="btn btn-primary btn-sm" onclick="openUploadEvidenceModal()"><i class="fa-solid fa-upload"></i> Unggah Bukti Digital</button>
+            </div>
+          </div>
+
+          <div class="content-card">
+            <div class="content-card-header">
+              <div class="card-title-group">
+                <h3><i class="fa-solid fa-folder-tree text-warning"></i> Repositori Brankas Bukti Digital</h3>
+                <p>Seluruh berkas bukti digital yang terverifikasi keaslian hash-nya.</p>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Nama File Bukti</th>
+                    <th>Format & Kategori</th>
+                    <th>Sumber Asal Dokumen</th>
+                    <th>Case ID Terkait</th>
+                    <th>SHA-256 Checksum</th>
+                    <th>Waktu Unggah</th>
+                    <th>Uploader</th>
+                    <th class="text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="table-evidence-vault-body">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =========================================================================
+             MODULE 10: USER & ACCESS CONTROL
+             ========================================================================= -->
+        <section class="view-panel" id="view-user_access">
+          <div class="module-header-banner">
+            <div class="module-banner-info">
+              <h1><i class="fa-solid fa-users-gear text-info"></i> User Directory & Immutable Security Audit Trail</h1>
+              <p>Manajemen peran pengguna (RBAC), pengaturan hak asesori investigasi, dan log audit keamanan sistem tanpa dapat dimanipulasi orang dalam.</p>
+            </div>
+          </div>
+
+          <div class="content-card">
+            <div class="content-card-header">
+              <div class="card-title-group">
+                <h3><i class="fa-solid fa-user-shield text-info"></i> Daftar Pengguna Sistem FDS 2.0 (Role-Based Access)</h3>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Nama Lengkap</th>
+                    <th>Email Korporasi</th>
+                    <th>Peran Sistem</th>
+                    <th>Divisi</th>
+                    <th>Status</th>
+                    <th>Terakhir Login</th>
+                    <th class="text-right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="table-users-list-body">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================================
+       MODALS: OCR INSPECTOR, DROPZONE, EVIDENCE UPLOAD
+       ========================================================================= -->
+
+  <!-- 1. AI OCR & Document Forensics Inspector Modal -->
+  <div class="modal-backdrop" id="modal-ocr-inspector">
+    <div class="modal-card" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-microscope text-danger"></i> AI Document Forensics & OCR Inspector</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-ocr-inspector')">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="forensic-ocr-container">
+          <!-- Left: Scanned Document with Visual Tamper Overlays -->
+          <div class="ocr-doc-preview">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #334155; padding-bottom: 6px; margin-bottom: 12px;">
+              <strong style="color: #ffffff;"><i class="fa-solid fa-file-pdf text-danger"></i> INVOICE_SCAN_00587.pdf</strong>
+              <span class="badge-tag red">98% FABRICATED</span>
+            </div>
+            
+            <p style="font-size: 0.72rem; color: #94a3b8;">Kepada: PT Retail Maju Sejahtera Tbk</p>
+            <p style="font-size: 0.72rem; color: #94a3b8;">Dari: PT Maju Bersama (Vendor)</p>
+            <p style="font-size: 0.72rem; color: #94a3b8;">Tanggal: 30 Mei 2026</p>
+            
+            <hr style="border: 0; border-top: 1px solid #334155; margin: 8px 0;">
+
+            <p style="font-size: 0.72rem;">Deskripsi: Jasa Pengiriman Logistik Cikarang-Surabaya</p>
+            <p style="font-size: 0.72rem;">Subtotal: Rp 225.225.225 | PPN 11%: Rp 24.774.775</p>
+            
+            <!-- Tampered Highlight Box -->
+            <div class="ocr-tamper-box">
+              <p style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">Nomor Rekening Tujuan Transfer:</p>
+              <p style="font-size: 0.9rem; font-family: monospace; font-weight: 800; color: #fca5a5;">BANK MANDIRI: 137-00-998811-2 (a.n Rudi H.)</p>
+              <p style="font-size: 0.65rem; color: #fecaca; margin-top: 4px;">*Error Level Analysis (ELA): Ditemukan jejak penempelan teks (Photoshop pixel boundary artifact) dengan ketidakcocokan font 1.4pt.</p>
+            </div>
+
+            <p style="font-size: 0.85rem; font-weight: 800; color: #ffffff; margin-top: 10px;">Total Tagihan: Rp 250.000.000</p>
+          </div>
+
+          <!-- Right: Analytical Metrics -->
+          <div class="ocr-analysis-panel">
+            <div class="ocr-metric-item">
+              <div>
+                <div style="font-size: 0.7rem; color: #94a3b8;">Kalkulasi Matematika (OCR Checksum)</div>
+                <strong style="font-size: 0.85rem; color: #10b981;">VALID (DPP + PPN 11% = Rp 250.000.000)</strong>
+              </div>
+              <i class="fa-solid fa-calculator text-success" style="font-size: 1.2rem;"></i>
+            </div>
+
+            <div class="ocr-metric-item">
+              <div>
+                <div style="font-size: 0.7rem; color: #94a3b8;">Error Level Analysis (ELA Pixel Tampering)</div>
+                <strong style="font-size: 0.85rem; color: #ef4444;">ANOMALI KRITIS (Score: 98/100)</strong>
+              </div>
+              <i class="fa-solid fa-triangle-exclamation text-danger" style="font-size: 1.2rem;"></i>
+            </div>
+
+            <div class="ocr-metric-item">
+              <div>
+                <div style="font-size: 0.7rem; color: #94a3b8;">Pencocokan Rekening Fisik vs ERP Master</div>
+                <strong style="font-size: 0.85rem; color: #ef4444;">MISMATCH (Rekening Resmi: BCA 012-345)</strong>
+              </div>
+              <i class="fa-solid fa-building-columns text-danger" style="font-size: 1.2rem;"></i>
+            </div>
+
+            <div class="ocr-metric-item">
+              <div>
+                <div style="font-size: 0.7rem; color: #94a3b8;">Metadata Software Pembuat</div>
+                <strong style="font-size: 0.85rem; color: #f59e0b;">Adobe Photoshop CC 2024 (Windows)</strong>
+              </div>
+              <i class="fa-solid fa-code text-warning" style="font-size: 1.2rem;"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('modal-ocr-inspector')">Tutup</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Invoice ditahan & bukti disimpan di Evidence Vault!')"><i class="fa-solid fa-lock"></i> Eksekusi Pembekuan Pembayaran</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+
+</body>
+</html>
