@@ -582,11 +582,12 @@ function initNavigation() {
     });
   });
 
-  // Sidebar toggle
+  // Sidebar toggle button
   const sidebarToggle = document.getElementById('sidebar-toggle');
   if (sidebarToggle) {
     sidebarToggle.addEventListener('click', () => {
-      document.getElementById('sidebar').classList.toggle('collapsed');
+      document.body.classList.toggle('sidebar-collapsed');
+      window.dispatchEvent(new Event('resize'));
     });
   }
 }
