@@ -1666,7 +1666,7 @@ function renderWorkspaceGraph() {
   if (!container) return;
 
   container.innerHTML = `
-    <svg width="100%" height="100%" viewBox="0 0 650 360" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="100%" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <radialGradient id="nodeRed" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stop-color="#ef4444"/>
@@ -1679,35 +1679,35 @@ function renderWorkspaceGraph() {
       </defs>
 
       <!-- Connections -->
-      <line x1="325" y1="180" x2="160" y2="100" stroke="#64748b" stroke-width="2" stroke-dasharray="4"/>
-      <line x1="325" y1="180" x2="500" y2="100" stroke="#ef4444" stroke-width="3"/>
-      <line x1="325" y1="180" x2="200" y2="280" stroke="#10b981" stroke-width="2"/>
-      <line x1="325" y1="180" x2="460" y2="280" stroke="#ef4444" stroke-width="3"/>
-      <line x1="500" y1="100" x2="460" y2="280" stroke="#ef4444" stroke-width="2" stroke-dasharray="2"/>
+      <line x1="300" y1="140" x2="130" y2="70" stroke="#64748b" stroke-width="2" stroke-dasharray="4"/>
+      <line x1="300" y1="140" x2="470" y2="70" stroke="#ef4444" stroke-width="3"/>
+      <line x1="300" y1="140" x2="160" y2="240" stroke="#10b981" stroke-width="2"/>
+      <line x1="300" y1="140" x2="440" y2="240" stroke="#ef4444" stroke-width="3"/>
+      <line x1="470" y1="70" x2="440" y2="240" stroke="#ef4444" stroke-width="2" stroke-dasharray="3"/>
 
       <!-- Center Node: AL-2024-0516 -->
-      <circle cx="325" cy="180" r="30" fill="url(#nodeRed)"/>
-      <text x="325" y="185" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">AL-0516</text>
+      <circle cx="300" cy="140" r="28" fill="url(#nodeRed)"/>
+      <text x="300" y="144" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle">AL-0516</text>
 
       <!-- Node: PT Maju Bersama -->
-      <circle cx="160" cy="100" r="26" fill="url(#nodeBlue)"/>
-      <text x="160" y="104" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">PT Maju</text>
-      <text x="160" y="136" fill="#94a3b8" font-size="9" text-anchor="middle">Vendor Master</text>
+      <circle cx="130" cy="70" r="24" fill="url(#nodeBlue)"/>
+      <text x="130" y="74" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">PT Maju</text>
+      <text x="130" y="104" fill="#94a3b8" font-size="8.5" text-anchor="middle">Vendor Master</text>
 
       <!-- Node: Rudi Hartono (Staff AP) -->
-      <circle cx="500" cy="100" r="28" fill="url(#nodeRed)"/>
-      <text x="500" y="104" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle">Rudi H.</text>
-      <text x="500" y="136" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">Staff AP (Tamperer)</text>
+      <circle cx="470" cy="70" r="26" fill="url(#nodeRed)"/>
+      <text x="470" y="74" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">Rudi H.</text>
+      <text x="470" y="104" fill="#ef4444" font-size="9" font-weight="bold" text-anchor="middle">Staff AP (Tamperer)</text>
 
       <!-- Node: Rek Resmi BCA -->
-      <circle cx="200" cy="280" r="24" fill="#10b981"/>
-      <text x="200" y="284" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">BCA #1</text>
-      <text x="200" y="316" fill="#10b981" font-size="9" text-anchor="middle">Rek Resmi</text>
+      <circle cx="160" cy="240" r="22" fill="#10b981"/>
+      <text x="160" y="244" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">BCA #1</text>
+      <text x="160" y="270" fill="#10b981" font-size="8.5" text-anchor="middle">Rek Resmi</text>
 
       <!-- Node: Rek Siluman Mandiri -->
-      <circle cx="460" cy="280" r="28" fill="url(#nodeRed)"/>
-      <text x="460" y="284" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">Mandiri #2</text>
-      <text x="460" y="316" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">Rek Pribadi Suspect</text>
+      <circle cx="440" cy="240" r="26" fill="url(#nodeRed)"/>
+      <text x="440" y="244" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">Mandiri #2</text>
+      <text x="440" y="270" fill="#ef4444" font-size="8.5" font-weight="bold" text-anchor="middle">Rek Pribadi Suspect</text>
     </svg>
   `;
 }
