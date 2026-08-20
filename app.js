@@ -605,7 +605,7 @@ function initNavigation() {
   if (sidebarToggle) {
     sidebarToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 1024) {
         document.body.classList.toggle('sidebar-mobile-open');
       } else {
         document.body.classList.toggle('sidebar-collapsed');
@@ -625,7 +625,7 @@ function initNavigation() {
 
 function switchView(viewName, subViewName) {
   // Auto-close sidebar on mobile after choosing a menu
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 1024) {
     document.body.classList.remove('sidebar-mobile-open');
   }
 
