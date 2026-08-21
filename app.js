@@ -702,6 +702,10 @@ function switchView(viewName, subViewName) {
     breadcrumb.textContent = getModuleTitle(viewName, sub);
   }
 
+  // Ensure all tables and SoD matrix are rendered
+  renderAllTables();
+  initSoDMatrix();
+
   window.dispatchEvent(new Event('resize'));
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
