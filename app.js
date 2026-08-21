@@ -1,3 +1,4 @@
+window.chartInstances = {}; const chartInstances = window.chartInstances;
 /* ==========================================================================
    FDS 2.0 - FRAUD DETECTION SYSTEM (NashTa × JendelaTax)
    COMPREHENSIVE DUMMY DATASET & FULL APPLICATION FLOW CONTROLLER
@@ -610,7 +611,19 @@ function initNavigation() {
       } else {
         document.body.classList.toggle('sidebar-collapsed');
       }
-      window.dispatchEvent(new Event('resize'));
+      
+  // Trigger instant Chart.js resize for mobile viewports
+  setTimeout(() => {
+    if (window.chartInstances) {
+      Object.values(window.chartInstances).forEach(chart => {
+        if (chart && typeof chart.resize === 'function') {
+          chart.resize();
+        }
+      });
+    }
+    window.dispatchEvent(new Event('resize'));
+  }, 60);
+
     });
   }
 
@@ -706,7 +719,19 @@ function switchView(viewName, subViewName) {
   renderAllTables();
   initSoDMatrix();
 
-  window.dispatchEvent(new Event('resize'));
+  
+  // Trigger instant Chart.js resize for mobile viewports
+  setTimeout(() => {
+    if (window.chartInstances) {
+      Object.values(window.chartInstances).forEach(chart => {
+        if (chart && typeof chart.resize === 'function') {
+          chart.resize();
+        }
+      });
+    }
+    window.dispatchEvent(new Event('resize'));
+  }, 60);
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1521,7 +1546,7 @@ function initAllCharts() {
   // 1. Off-Hours Journal Line Chart
   const ctxOff = document.getElementById('chart-fin-offhours');
   if (ctxOff) {
-    new Chart(ctxOff, {
+    chartInstances['chart-fin-offhours'] = new Chart(ctxOff, {
       type: 'line',
       data: {
         labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '23:45'],
@@ -1537,7 +1562,7 @@ function initAllCharts() {
   // 1b. User Behavior Donut
   const ctxUDonut = document.getElementById('chart-fin-user-donut');
   if (ctxUDonut) {
-    new Chart(ctxUDonut, {
+    chartInstances['chart-fin-user-donut'] = new Chart(ctxUDonut, {
       type: 'doughnut',
       data: {
         labels: ['Off-Hours Journal (38%)', 'Rubber-Stamping (28%)', 'Pre-Payment Edit (22%)', 'Split PO (12%)'],
@@ -1553,7 +1578,7 @@ function initAllCharts() {
   // 2. Vendor Scatter Plot
   const ctxScatter = document.getElementById('chart-proc-scatter');
   if (ctxScatter) {
-    new Chart(ctxScatter, {
+    chartInstances['chart-proc-scatter'] = new Chart(ctxScatter, {
       type: 'scatter',
       data: {
         datasets: [
@@ -1591,7 +1616,7 @@ function initAllCharts() {
   // 3. Tax Gap Bar Chart
   const ctxTaxGap = document.getElementById('chart-tax-gap');
   if (ctxTaxGap) {
-    new Chart(ctxTaxGap, {
+    chartInstances['chart-tax-gap'] = new Chart(ctxTaxGap, {
       type: 'bar',
       data: {
         labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei'],
@@ -1608,7 +1633,7 @@ function initAllCharts() {
   // 5. POS Area Chart
   const ctxPos = document.getElementById('chart-ops-pos');
   if (ctxPos) {
-    new Chart(ctxPos, {
+    chartInstances['chart-ops-pos'] = new Chart(ctxPos, {
       type: 'line',
       data: {
         labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '21:00 (Tutup)'],
@@ -1628,7 +1653,7 @@ function initAllCharts() {
   // 7. Executive Recovery Chart
   const ctxExecRec = document.getElementById('chart-exec-recovery');
   if (ctxExecRec) {
-    new Chart(ctxExecRec, {
+    chartInstances['chart-exec-recovery'] = new Chart(ctxExecRec, {
       type: 'line',
       data: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
@@ -1648,7 +1673,7 @@ function initAllCharts() {
   // 7b. Regional Risk Heatmap Bar
   const ctxExecReg = document.getElementById('chart-exec-regional');
   if (ctxExecReg) {
-    new Chart(ctxExecReg, {
+    chartInstances['chart-exec-regional'] = new Chart(ctxExecReg, {
       type: 'bar',
       data: {
         labels: ['Jakarta Selatan', 'Surabaya Timur', 'Bandung Dago', 'Medan Center', 'Makassar Mall', 'Denpasar Bali'],
