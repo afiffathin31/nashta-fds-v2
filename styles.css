@@ -1594,3 +1594,29 @@ body.sidebar-mobile-open .sidebar-backdrop {
     grid-template-columns: 1fr !important;
   }
 }
+
+
+/* Extra Responsive overrides for v2 */
+@media (max-width: 640px) {
+  .module-header-banner {
+    padding: 12px 14px !important;
+    margin-bottom: 12px !important;
+  }
+  .module-banner-info h1 {
+    font-size: 0.95rem !important;
+  }
+  .module-banner-info p {
+    font-size: 0.72rem !important;
+  }
+  .content-body {
+    padding: 8px 8px 30px !important;
+  }
+  .content-card {
+    padding: 12px 10px !important;
+    margin-bottom: 12px !important;
+  }
+  .chart-container {
+    height: 220px !important;
+    max-height: 220px !important;
+  }
+}
