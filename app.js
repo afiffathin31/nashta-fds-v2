@@ -732,7 +732,7 @@ function switchView(viewName, subViewName) {
     window.dispatchEvent(new Event('resize'));
   }, 60);
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  renderModuleCharts(viewName, sub); window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function getModuleTitle(viewName, subName) {
@@ -1803,4 +1803,103 @@ function showToast(message) {
     toast.style.transform = 'translateX(100%)';
     setTimeout(() => toast.remove(), 300);
   }, 3500);
+}
+
+
+// --- DYNAMIC LAZY CHART RENDERER (GUARANTEED 100% MOBILE FIT) ---
+window.chartStore = {};
+
+function renderModuleCharts(viewName, subName) {
+  setTimeout(() => {
+    // 1. Module Financial Charts
+    if (viewName === 'financial') {
+      const ctxOff = document.getElementById('chart-fin-offhours');
+      if (ctxOff) {
+        if (window.chartStore['chart-fin-offhours']) window.chartStore['chart-fin-offhours'].destroy();
+        window.chartStore['chart-fin-offhours'] = new Chart(ctxOff, {
+          type: 'line',
+          data: {
+            labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '23:45'],
+            datasets: [
+              { label: 'Normal Baseline', data: [0, 0, 45, 120, 95, 10, 0], borderColor: '#3B82F6', tension: 0.3 },
+              { label: 'Off-Hours Anomalies', data: [12, 8, 0, 0, 0, 18, 38], borderColor: '#D92525', backgroundColor: 'rgba(217, 37, 37, 0.15)', fill: true, tension: 0.4 }
+            ]
+          },
+          options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { font: { size: 9 } } }, y: { ticks: { font: { size: 9 } } } } }
+        });
+      }
+    }
+
+    // 2. Module Procurement Charts
+    if (viewName === 'procurement') {
+      const ctxScatter = document.getElementById('chart-proc-scatter');
+      if (ctxScatter) {
+        if (window.chartStore['chart-proc-scatter']) window.chartStore['chart-proc-scatter'].destroy();
+        window.chartStore['chart-proc-scatter'] = new Chart(ctxScatter, {
+          type: 'scatter',
+          data: {
+            datasets: [
+              { label: 'Kritis', data: [{x: 8.8, y: 9.2}, {x: 8.2, y: 8.7}], backgroundColor: '#D92525', pointRadius: 7 },
+              { label: 'Wajar', data: [{x: 1.5, y: 2.0}, {x: 2.1, y: 1.8}], backgroundColor: '#10B981', pointRadius: 5 }
+            ]
+          },
+          options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { font: { size: 9 } } }, y: { ticks: { font: { size: 9 } } } } }
+        });
+      }
+    }
+
+    // 3. Module Operational (POS Hourly Chart)
+    if (viewName === 'operational') {
+      const ctxPos = document.getElementById('chart-ops-pos');
+      if (ctxPos) {
+        if (window.chartStore['chart-ops-pos']) window.chartStore['chart-ops-pos'].destroy();
+        window.chartStore['chart-ops-pos'] = new Chart(ctxPos, {
+          type: 'line',
+          data: {
+            labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '21:00'],
+            datasets: [{
+              label: 'Spike Anomali Void Pasca-Customer',
+              data: [2, 3, 5, 4, 8, 14, 45],
+              borderColor: '#D92525',
+              backgroundColor: 'rgba(217, 37, 37, 0.15)',
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                labels: { boxWidth: 10, font: { size: 10 } }
+              }
+            },
+            scales: {
+              x: { ticks: { font: { size: 9 }, maxRotation: 0, autoSkip: true } },
+              y: { ticks: { font: { size: 9 } } }
+            }
+          }
+        });
+      }
+    }
+
+    // 4. Module Executive Charts
+    if (viewName === 'executive') {
+      const ctxExecRec = document.getElementById('chart-exec-recovery');
+      if (ctxExecRec) {
+        if (window.chartStore['chart-exec-recovery']) window.chartStore['chart-exec-recovery'].destroy();
+        window.chartStore['chart-exec-recovery'] = new Chart(ctxExecRec, {
+          type: 'line',
+          data: {
+            labels: ['Kasus 1', 'Kasus 2', 'Kasus 3', 'Kasus 4', 'Kasus 5'],
+            datasets: [
+              { label: 'Terdeteksi (Miliar)', data: [1.2, 2.5, 4.8, 8.1, 12.3], borderColor: '#D92525', tension: 0.3 },
+              { label: 'Tercegah (Miliar)', data: [1.2, 2.5, 4.0, 7.5, 11.1], borderColor: '#10B981', tension: 0.3 }
+            ]
+          },
+          options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { font: { size: 9 } } }, y: { ticks: { font: { size: 9 } } } } }
+        });
+      }
+    }
+  }, 40);
 }

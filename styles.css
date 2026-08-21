@@ -1703,20 +1703,7 @@ canvas {
   }
 
   /* Sticky first column so user always sees the label/name */
-  .data-table th:first-child,
-  .data-table td:first-child {
-    position: sticky !important;
-    left: 0 !important;
-    z-index: 5 !important;
-    background-color: #ffffff !important;
-    border-right: 2px solid #cbd5e1 !important;
-    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
-  }
-
-  .data-table thead th:first-child {
-    background-color: #f8fafc !important;
-    z-index: 15 !important;
-  }
+  
 
   .grid-2col,
   .grid-equal-2col,
@@ -1736,5 +1723,72 @@ canvas {
   div:has(> canvas) {
     height: 190px !important;
     max-height: 200px !important;
+  }
+}
+
+
+/* ==========================================================================
+   CLEAN MOBILE SCROLLING & RESPONSIVE CHARTS (NO FREEZE / NATURAL SCROLL)
+   ========================================================================== */
+
+/* 1. Natural Horizontal Scrolling for Tables - ZERO Freezing */
+.table-responsive {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--border, #e2e8f0) !important;
+  border-radius: 8px !important;
+  margin-bottom: 8px !important;
+  background-color: #ffffff !important;
+  touch-action: pan-x pan-y !important;
+}
+
+.data-table {
+  width: 100% !important;
+  min-width: 560px !important;
+  border-collapse: collapse !important;
+  position: static !important;
+}
+
+.data-table th,
+.data-table td {
+  position: static !important;
+  background-color: transparent !important;
+  padding: 8px 10px !important;
+  font-size: 0.75rem !important;
+  white-space: nowrap !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.data-table thead {
+  background-color: #f8fafc !important;
+}
+
+/* 2. Full Auto-Fit Charts */
+.chart-container,
+div:has(> canvas) {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 220px !important;
+  overflow: hidden !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
+canvas {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  .chart-container,
+  div:has(> canvas) {
+    height: 200px !important;
   }
 }
