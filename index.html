@@ -6,7 +6,7 @@
   <title>FDS 2.0 — Fraud Detection System (NashTa × JendelaTax)</title>
   
   <!-- CSS Stylesheets -->
-  <link rel="stylesheet" href="styles.css?v=20260821_3">
+  <link rel="stylesheet" href="styles.css?v=20260821_chartfix">
   
   <!-- FontAwesome 6 (CDN) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -280,8 +280,7 @@
                     <p>Membandingkan volume transaksi normal (08:00 - 17:00) dengan lonjakan entri mencurigakan tengah malam.</p>
                   </div>
                 </div>
-                <div style="height: 260px;">
-                  <canvas id="chart-fin-offhours"></canvas>
+                <div class="chart-container" style="position: relative; width: 100%; height: 260px;"><canvas id="chart-fin-offhours"></canvas>
                 </div>
               </div>
 
@@ -292,8 +291,7 @@
                     <p>Proporsi anomali berdasarkan kategori deviasi kebiasaan ERP.</p>
                   </div>
                 </div>
-                <div style="height: 260px;">
-                  <canvas id="chart-fin-user-donut"></canvas>
+                <div class="chart-container" style="position: relative; width: 100%; height: 260px;"><canvas id="chart-fin-user-donut"></canvas>
                 </div>
               </div>
             </div>
@@ -731,8 +729,7 @@
                     <p>Kuadran identifikasi vendor kritis berdasarkan skor analitik gabungan.</p>
                   </div>
                 </div>
-                <div style="height: 280px;">
-                  <canvas id="chart-proc-scatter"></canvas>
+                <div class="chart-container" style="position: relative; width: 100%; height: 260px;"><canvas id="chart-proc-scatter"></canvas>
                 </div>
               </div>
 
@@ -1300,8 +1297,7 @@
                   <p>Memisahkan perbedaan temporer (timing differences) dengan perbedaan permanen berisiko SKP.</p>
                 </div>
               </div>
-              <div style="height: 280px;">
-                <canvas id="chart-tax-gap"></canvas>
+              <div class="chart-container" style="position: relative; width: 100%; height: 260px;"><canvas id="chart-tax-gap"></canvas>
               </div>
             </div>
           </div>
@@ -1647,8 +1643,7 @@
                     <p>Lonjakan void pada saat pergantian shift kasir dan akhir jam buka toko.</p>
                   </div>
                 </div>
-                <div style="height: 260px;">
-                  <canvas id="chart-ops-pos"></canvas>
+                <div class="chart-container" style="position: relative; width: 100%; height: 260px;"><canvas id="chart-ops-pos"></canvas>
                 </div>
               </div>
 
@@ -1980,8 +1975,7 @@
                   <p>Pertumbuhan akumulasi dana operasional yang berhasil diselamatkan.</p>
                 </div>
               </div>
-              <div style="height: 260px;">
-                <canvas id="chart-exec-recovery"></canvas>
+              <div class="chart-container" style="position: relative; width: 100%; height: 260px;"><canvas id="chart-exec-recovery"></canvas>
               </div>
             </div>
 
@@ -1992,8 +1986,7 @@
                   <p>Peringkat skor risiko cabang di seluruh Indonesia.</p>
                 </div>
               </div>
-              <div style="height: 260px;">
-                <canvas id="chart-exec-regional"></canvas>
+              <div class="chart-container" style="position: relative; width: 100%; height: 260px;"><canvas id="chart-exec-regional"></canvas>
               </div>
             </div>
           </div>
@@ -2420,7 +2413,7 @@
   <div id="toast-container"></div>
 
   <!-- Application Logic -->
-  <script src="app.js?v=20260821_3"></script>
+  <script src="app.js?v=20260821_chartfix"></script>
 
 </body>
 </html>
