@@ -321,8 +321,67 @@
                     </tr>
                   </thead>
                   <tbody id="table-fin-ueba-body">
-                    <!-- Dynamic Rows via JS -->
-                  </tbody>
+<tr>
+  <td><strong class="font-mono">USR-AP-088</strong><br><span style="font-size:0.75rem; color:#64748b;">Rudi Hartono</span></td>
+  <td><span class="badge-tag blue">Staff Accounts Payable</span></td>
+  <td><span class="badge-tag red font-bold">Off-Hours Journal (23:45 WIB) & Pre-Payment Master Edit</span></td>
+  <td class="font-mono">30 Mei 2026, 23:45</td>
+  <td class="font-mono font-bold text-danger">Rp 250.000.000</td>
+  <td><span class="badge-score red">94/100</span></td>
+  <td><span class="badge-tag orange">Hold Payment & Lock Account</span></td>
+  <td class="text-right">
+    <button class="btn btn-secondary btn-xs" onclick="openCaseDetail('AL-2024-0516')">Buka Kasus &rarr;</button>
+  </td>
+</tr>
+<tr>
+  <td><strong class="font-mono">USR-PR-042</strong><br><span style="font-size:0.75rem; color:#64748b;">Siti Wahyuni</span></td>
+  <td><span class="badge-tag blue">Buyer Pengadaan Logistik</span></td>
+  <td><span class="badge-tag red font-bold">Near-Threshold Split PO Creation (3x @ Rp 95M)</span></td>
+  <td class="font-mono">29 Mei 2026, 17:15</td>
+  <td class="font-mono font-bold text-danger">Rp 285.000.000</td>
+  <td><span class="badge-score red">88/100</span></td>
+  <td><span class="badge-tag orange">Consolidate PO for Board Approval</span></td>
+  <td class="text-right">
+    <button class="btn btn-secondary btn-xs" onclick="openCaseDetail('AL-2024-0516')">Buka Kasus &rarr;</button>
+  </td>
+</tr>
+<tr>
+  <td><strong class="font-mono">USR-AC-019</strong><br><span style="font-size:0.75rem; color:#64748b;">Bambang Irawan</span></td>
+  <td><span class="badge-tag blue">Accounting Supervisor</span></td>
+  <td><span class="badge-tag orange font-bold">Round Amount Adjustments Without Memo</span></td>
+  <td class="font-mono">29 Mei 2026, 22:10</td>
+  <td class="font-mono font-bold text-danger">Rp 500.000.000</td>
+  <td><span class="badge-score orange">85/100</span></td>
+  <td><span class="badge-tag orange">Request Audit Justification</span></td>
+  <td class="text-right">
+    <button class="btn btn-secondary btn-xs" onclick="openCaseDetail('AL-2024-0516')">Buka Kasus &rarr;</button>
+  </td>
+</tr>
+<tr>
+  <td><strong class="font-mono">USR-MG-004</strong><br><span style="font-size:0.75rem; color:#64748b;">Hendra Wijaya</span></td>
+  <td><span class="badge-tag blue">Manager Operasional</span></td>
+  <td><span class="badge-tag orange font-bold">Rubber-Stamping Approval (Avg 2.4s per Rp 200M Invoice)</span></td>
+  <td class="font-mono">28 Mei 2026, 16:30</td>
+  <td class="font-mono font-bold">Rp 1.450.000.000</td>
+  <td><span class="badge-score orange">82/100</span></td>
+  <td><span class="badge-tag orange">Peer-Review Mandatory</span></td>
+  <td class="text-right">
+    <button class="btn btn-secondary btn-xs" onclick="openCaseDetail('AL-2024-0516')">Buka Kasus &rarr;</button>
+  </td>
+</tr>
+<tr>
+  <td><strong class="font-mono">USR-GL-011</strong><br><span style="font-size:0.75rem; color:#64748b;">Agus Pratama</span></td>
+  <td><span class="badge-tag blue">Junior GL Accountant</span></td>
+  <td><span class="badge-tag orange font-bold">Backdated Journal Entry (> 45 Hari Masa Lalu)</span></td>
+  <td class="font-mono">28 Mei 2026, 02:15</td>
+  <td class="font-mono font-bold">Rp 175.000.000</td>
+  <td><span class="badge-score orange">80/100</span></td>
+  <td><span class="badge-tag orange">Audit Re-Open Period Log</span></td>
+  <td class="text-right">
+    <button class="btn btn-secondary btn-xs" onclick="openCaseDetail('AL-2024-0516')">Buka Kasus &rarr;</button>
+  </td>
+</tr>
+</tbody>
                 </table>
               </div>
             </div>
@@ -352,8 +411,47 @@
                     </tr>
                   </thead>
                   <tbody id="table-fin-profiling-body">
-                    <!-- Populated via JS -->
-                  </tbody>
+<tr>
+  <td><strong>Rudi Hartono (Staff AP)</strong></td>
+  <td>Keuangan & AP</td>
+  <td class="font-mono" style="font-size:0.75rem;">08:30 - 17:00 (Avg 12 Trx/Day, Nilai Max Rp 40M)</td>
+  <td style="font-size:0.75rem; color:#b91c1c;"><strong>Aktif 23:45 WIB, Input Nilai Rp 250M, Edit Rekening Vendor</strong></td>
+  <td><span class="badge-tag red font-bold">+3.8σ Deviation (High Outlier)</span></td>
+  <td><span class="badge-score red">High Risk</span></td>
+</tr>
+<tr>
+  <td><strong>Siti Wahyuni (Buyer)</strong></td>
+  <td>Procurement</td>
+  <td class="font-mono" style="font-size:0.75rem;">08:00 - 16:30 (Avg 4 PO/Day, Nilai Max Rp 150M)</td>
+  <td style="font-size:0.75rem; color:#b91c1c;"><strong>Input 3 PO berurutan dalam 10 menit ke vendor baru</strong></td>
+  <td><span class="badge-tag red font-bold">+2.9σ Deviation (PO Splitting)</span></td>
+  <td><span class="badge-score red">High Risk</span></td>
+</tr>
+<tr>
+  <td><strong>Bambang Irawan (Supervisor)</strong></td>
+  <td>Akuntansi & GL</td>
+  <td class="font-mono" style="font-size:0.75rem;">09:00 - 17:30 (Avg 8 Jurnal/Day)</td>
+  <td style="font-size:0.75rem;">Posting jurnal bulat Rp 500 Juta akhir bulan di luar kantor</td>
+  <td><span class="badge-tag orange font-bold">+2.4σ Deviation (Round Amount)</span></td>
+  <td><span class="badge-score orange">Medium Risk</span></td>
+</tr>
+<tr>
+  <td><strong>Dina Lestari (Kasir)</strong></td>
+  <td>Retail Bandung Dago</td>
+  <td class="font-mono" style="font-size:0.75rem;">Shift Pagi/Siang (Avg Void 0.8% dari total omset)</td>
+  <td style="font-size:0.75rem; color:#b91c1c;"><strong>Void Ratio 6.4% pasca-pelanggan meninggalkan kasir</strong></td>
+  <td><span class="badge-tag red font-bold">+4.1σ Deviation (Skimming Flag)</span></td>
+  <td><span class="badge-score red">High Risk</span></td>
+</tr>
+<tr>
+  <td><strong>Hendra Wijaya (Manager)</strong></td>
+  <td>Operasional Wilayah</td>
+  <td class="font-mono" style="font-size:0.75rem;">Review 5-8 menit per dokumen pengadaan</td>
+  <td style="font-size:0.75rem;">Batch approval 35 PO dalam 2 menit tanpa buka lampiran</td>
+  <td><span class="badge-tag orange font-bold">+3.2σ Deviation (Rubber Stamping)</span></td>
+  <td><span class="badge-score orange">Medium Risk</span></td>
+</tr>
+</tbody>
                 </table>
               </div>
             </div>
@@ -370,8 +468,47 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-fin-offhours-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>No Jurnal Voucher</th>
+    <th>Waktu Posting</th>
+    <th>User Pembuat</th>
+    <th>Pasangan Akun GL</th>
+    <th>Nominal</th>
+    <th>Indikasi Anomali</th>
+    <th>Status Mitigasi</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold text-danger">JV-2026-00981</td>
+    <td class="font-mono text-danger font-bold">30 Mei 2026, 23:45 WIB (Off-Hours)</td>
+    <td><strong>Rudi Hartono (Staff AP)</strong></td>
+    <td style="font-size:0.75rem;">Dr. Beban Konsultasi / Cr. Kas Bank Mandiri</td>
+    <td class="font-mono font-bold text-danger">Rp 250.000.000</td>
+    <td><span class="badge-tag red font-bold">Posting Tengah Malam Tanpa Dokumen Memo BAP</span></td>
+    <td><span class="badge-tag red">Blocked</span></td>
+  </tr>
+  <tr>
+    <td class="font-mono font-bold">JV-2026-00974</td>
+    <td class="font-mono text-danger font-bold">29 Mei 2026, 22:10 WIB (Off-Hours)</td>
+    <td><strong>Bambang Irawan (Supervisor GL)</strong></td>
+    <td style="font-size:0.75rem;">Dr. Beban Operasional Lain / Cr. Kas Kecil</td>
+    <td class="font-mono font-bold text-danger">Rp 500.000.000 (Round Amount)</td>
+    <td><span class="badge-tag orange font-bold">Angka Bulat Sempurna Tanpa Rincian Lampiran</span></td>
+    <td><span class="badge-tag orange">Under Review</span></td>
+  </tr>
+  <tr>
+    <td class="font-mono font-bold">JV-2026-00955</td>
+    <td class="font-mono text-danger font-bold">28 Mei 2026, 02:15 WIB (Off-Hours)</td>
+    <td><strong>Agus Pratama (Junior GL)</strong></td>
+    <td style="font-size:0.75rem;">Dr. Persediaan / Cr. Hutang Usaha Vendor Cangkang</td>
+    <td class="font-mono font-bold">Rp 175.000.000</td>
+    <td><span class="badge-tag red font-bold">Backdated Entry Mundur 45 Hari ke Periode Tertutup</span></td>
+    <td><span class="badge-tag red">Audit Hold</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -387,8 +524,38 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-fin-velocity-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>User Penyetuju (Approver)</th>
+    <th>Jabatan</th>
+    <th>Jumlah Dokumen Disetujui</th>
+    <th>Waktu Rata-rata Review</th>
+    <th>Total Nilai Approval</th>
+    <th>Flag Pola Persetujuan</th>
+    <th>Skor Risiko</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>Hendra Wijaya (Manager Operasional)</strong></td>
+    <td>PO & AP Approver</td>
+    <td class="font-mono font-bold">35 Dokumen PO</td>
+    <td class="font-mono text-danger font-bold">2 Menit 14 Detik (Avg 3.8 detik/dokumen)</td>
+    <td class="font-mono font-bold">Rp 1.450.000.000</td>
+    <td><span class="badge-tag red font-bold">Rubber-Stamping / Batch Approval Tanpa Baca Berkas</span></td>
+    <td><span class="badge-score red">88/100</span></td>
+  </tr>
+  <tr>
+    <td><strong>Budi Prakoso (Supervisor Cabang Surabaya)</strong></td>
+    <td>Invoice Approver</td>
+    <td class="font-mono font-bold">18 Tagihan AP</td>
+    <td class="font-mono text-danger font-bold">1 Menit 40 Detik (Avg 5.5 detik/tagihan)</td>
+    <td class="font-mono font-bold">Rp 620.000.000</td>
+    <td><span class="badge-tag orange font-bold">Bypass Prosedur Verifikasi Dokumen 3-Way Matching</span></td>
+    <td><span class="badge-score orange">82/100</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -404,8 +571,38 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-fin-tampering-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>User Modifikator</th>
+    <th>Master Vendor Target</th>
+    <th>Kolom Data yang Diubah</th>
+    <th>Nilai Sebelumnya</th>
+    <th>Nilai Baru (Hasil Perubahan)</th>
+    <th>Waktu Relatif vs Eksekusi Kas</th>
+    <th>Evaluasi Forensik FDS</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>Rudi Hartono (Staff AP)</strong></td>
+    <td><strong>PT Maju Bersama (VEND-0098)</strong></td>
+    <td class="font-bold text-danger">Nomor Rekening Bank Tujuan</td>
+    <td class="font-mono">Bank BCA: 012-345-6789 (Rek Resmi Vendor)</td>
+    <td class="font-mono text-danger font-bold">Bank Mandiri: 137-00-998811-2 (a.n Rudi H.)</td>
+    <td class="font-mono font-bold text-danger">10 Menit Sebelum Transaksi Transfer Dijalankan</td>
+    <td><span class="badge-tag red font-bold">CRITICAL ALERT (Interception Flag)</span></td>
+  </tr>
+  <tr>
+    <td><strong>Siti Wahyuni (Buyer)</strong></td>
+    <td><strong>CV Berkah Sentosa (VEND-0044)</strong></td>
+    <td class="font-bold">Alamat Domisili & NPWP Rekanan</td>
+    <td class="font-mono">Jl. Rungkut Industri No. 12 Surabaya</td>
+    <td class="font-mono text-danger font-bold">Jl. Melati No. 8 (Alamat Rumah Pribadi Staf)</td>
+    <td class="font-mono font-bold">2 Jam Sebelum Penerbitan SPK Pengadaan</td>
+    <td><span class="badge-tag orange font-bold">HIGH CONFLICT ALERT</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -421,8 +618,32 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-fin-gl-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Akun Buku Besar (CoA)</th>
+    <th>Saldo Saat Ini</th>
+    <th>Deskripsi Kondisi Akun</th>
+    <th>Status Kesehatan CoA</th>
+    <th class="text-right">Tindakan Mitigasi</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold text-danger">1109-001 (Clearing Account Bank AP)</td>
+    <td class="font-mono font-bold text-danger">Rp 1.250.000.000 (Gantung > 60 Hari)</td>
+    <td style="font-size:0.78rem;">Penumpukan mutasi transfer keluar yang belum direkonsil ke invoice sah</td>
+    <td><span class="badge-tag red font-bold">Unhealthy (Score 45%)</span></td>
+    <td class="text-right"><button class="btn btn-danger btn-xs" onclick="showToast('Wajib Penutupan Akun Gantung')">Wajib Penutupan</button></td>
+  </tr>
+  <tr>
+    <td class="font-mono font-bold">2101-009 (Hutang Usaha Pihak Ketiga)</td>
+    <td class="font-mono font-bold">Rp 450.000.000 (Unposted Batch)</td>
+    <td style="font-size:0.78rem;">Batch transaksi hutang yang di-hold oleh staf tanpa justifikasi</td>
+    <td><span class="badge-tag orange font-bold">Review Needed (Score 65%)</span></td>
+    <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Audit Unposted Batch')">Audit Batch</button></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -563,8 +784,43 @@
                     </tr>
                   </thead>
                   <tbody id="table-proc-vendor-body">
-                    <!-- Populated via JS -->
-                  </tbody>
+<tr>
+  <td><strong>CV Maju Sentosa</strong></td>
+  <td class="font-mono">01.345.678.9-012.000</td>
+  <td class="font-mono font-bold text-danger">Rp 4.5 M (18 PO)</td>
+  <td><span class="badge-tag red font-bold">Split Purchase & Rekening Duplikat Internal</span></td>
+  <td><span class="badge-score red">92/100</span></td>
+  <td><span class="badge-tag red font-bold">Freeze Vendor</span></td>
+  <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openOcrInspectorModal('INV-2024-00587')"><i class="fa-solid fa-microscope"></i> OCR</button></td>
+</tr>
+<tr>
+  <td><strong>PT Berkah Abadi</strong></td>
+  <td class="font-mono">02.987.654.3-014.000</td>
+  <td class="font-mono font-bold text-danger">Rp 6.2 M (24 PO)</td>
+  <td><span class="badge-tag red font-bold">Shell Company / Virtual Office Kosong</span></td>
+  <td><span class="badge-score red">88/100</span></td>
+  <td><span class="badge-tag red font-bold">Blacklist Review</span></td>
+  <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openOcrInspectorModal('INV-2024-00587')"><i class="fa-solid fa-microscope"></i> OCR</button></td>
+</tr>
+<tr>
+  <td><strong>PT Sejahtera Utama</strong></td>
+  <td class="font-mono">01.888.999.1-011.000</td>
+  <td class="font-mono font-bold">Rp 3.8 M (12 PO)</td>
+  <td><span class="badge-tag orange font-bold">Related Party (Kesamaan No Telp Manager Logistik)</span></td>
+  <td><span class="badge-score orange">85/100</span></td>
+  <td><span class="badge-tag orange font-bold">Hold Tender</span></td>
+  <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openOcrInspectorModal('INV-2024-00512')"><i class="fa-solid fa-microscope"></i> OCR</button></td>
+</tr>
+<tr>
+  <td><strong>CV Karya Mandiri</strong></td>
+  <td class="font-mono">03.222.111.4-015.000</td>
+  <td class="font-mono font-bold">Rp 1.9 M (8 PO)</td>
+  <td><span class="badge-tag red font-bold">Faktur Pajak Dibatalkan Sepihak di DJP</span></td>
+  <td><span class="badge-score red">84/100</span></td>
+  <td><span class="badge-tag red font-bold">Audit Tax Invoice</span></td>
+  <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openOcrInspectorModal('INV-2024-00499')"><i class="fa-solid fa-microscope"></i> OCR</button></td>
+</tr>
+</tbody>
                 </table>
               </div>
             </div>
@@ -582,8 +838,51 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-proc-ocr-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>No Invoice Fisik</th>
+    <th>Nama Vendor Rekanan</th>
+    <th>Tanggal</th>
+    <th>Nilai Tagihan</th>
+    <th>Math Checksum</th>
+    <th>ELA Pixel Forensics</th>
+    <th>Pencocokan Rekening Bank</th>
+    <th class="text-right">Inspeksi</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold text-danger">INV-2024-00587</td>
+    <td><strong>PT Maju Bersama</strong></td>
+    <td class="font-mono">30 Mei 2026</td>
+    <td class="font-mono font-bold text-danger">Rp 250.000.000</td>
+    <td><span class="badge-tag green">VALID (DPP + PPN 11%)</span></td>
+    <td><span class="badge-score red">98% Fabricated (Photoshop)</span></td>
+    <td><span class="badge-tag red font-bold">MISMATCH (Mandiri vs BCA Resmi)</span></td>
+    <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openOcrInspectorModal('INV-2024-00587')">Inspector</button></td>
+  </tr>
+  <tr>
+    <td class="font-mono font-bold">INV-2024-00512</td>
+    <td><strong>PT Nusantara Cargo</strong></td>
+    <td class="font-mono">28 Mei 2026</td>
+    <td class="font-mono font-bold">Rp 165.000.000</td>
+    <td><span class="badge-tag green">VALID</span></td>
+    <td><span class="badge-score green">12% Normal (Asli)</span></td>
+    <td><span class="badge-tag green font-bold">MATCH (BCA 088-219)</span></td>
+    <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openOcrInspectorModal('INV-2024-00512')">Inspector</button></td>
+  </tr>
+  <tr>
+    <td class="font-mono font-bold text-danger">INV-2024-00499</td>
+    <td><strong>CV Karya Mandiri</strong></td>
+    <td class="font-mono">26 Mei 2026</td>
+    <td class="font-mono font-bold">Rp 145.000.000</td>
+    <td><span class="badge-tag red font-bold">SELISIH PPN 11% (Salah Hitung Rp 1.2M)</span></td>
+    <td><span class="badge-score orange">84% Suspicious (Font Mismatch)</span></td>
+    <td><span class="badge-tag green font-bold">MATCH</span></td>
+    <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openOcrInspectorModal('INV-2024-00499')">Inspector</button></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -598,8 +897,36 @@
                 </div>
               </div>
               <div id="vendor-360-container">
-                <!-- Populated via JS -->
-              </div>
+<div class="grid-2col" style="margin-top: 10px;">
+  <div style="background-color: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <h4 style="font-weight: 800; color: #0f172a; font-size: 1rem;"><i class="fa-solid fa-building text-danger"></i> PT Maju Bersama (VEND-0098)</h4>
+      <span class="badge-tag red">HIGH RISK VENDOR (94/100)</span>
+    </div>
+    <p style="font-size: 0.78rem; color: #64748b; line-height: 1.6;">
+      <strong>NPWP:</strong> 01.345.678.9-012.000 | <strong>Kategori:</strong> Jasa Angkutan & Logistik<br>
+      <strong>Total Spend 2026:</strong> Rp 4.500.000.000 (18 Transaksi PO)<br>
+      <strong>Nomor Rekening Terdaftar:</strong> Bank BCA 012-345-6789 (Rekening Resmi Vendor)<br>
+      <strong>Anomali Terdeteksi:</strong> Percobaan pengalihan pembayaran invoice INV-2024-00587 (Rp 250 Juta) ke Bank Mandiri 137-00-998811-2 (a.n Rudi Hartono).<br>
+      <strong>Status Mitigasi:</strong> Payment Hold Aktif & Akun Dibekukan.
+    </p>
+  </div>
+
+  <div style="background-color: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <h4 style="font-weight: 800; color: #0f172a; font-size: 1rem;"><i class="fa-solid fa-building text-warning"></i> PT Berkah Abadi (VEND-0014)</h4>
+      <span class="badge-tag orange">SHELL COMPANY (88/100)</span>
+    </div>
+    <p style="font-size: 0.78rem; color: #64748b; line-height: 1.6;">
+      <strong>NPWP:</strong> 02.987.654.3-014.000 | <strong>Kategori:</strong> Pengadaan IT & Konsultan<br>
+      <strong>Total Spend 2026:</strong> Rp 6.200.000.000 (24 Transaksi PO)<br>
+      <strong>Alamat Domisili:</strong> Co-Working Space Virtual Office (Tanpa Ruang Fisik)<br>
+      <strong>Anomali Terdeteksi:</strong> 0 Karyawan terdaftar BPJS Ketenagakerjaan dan kesamaan rekening perantara dengan staf internal.<br>
+      <strong>Status Mitigasi:</strong> Masuk Blacklist Review Komite Audit.
+    </p>
+  </div>
+</div>
+</div>
             </div>
           </div>
 
@@ -614,8 +941,35 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-proc-related-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Vendor Terkait</th>
+    <th>Karyawan Internal Terhubung</th>
+    <th>Jabatan Karyawan</th>
+    <th>Jenis Hubungan / Indikasi Konflik</th>
+    <th>Tingkat Risiko</th>
+    <th class="text-right">Aksi</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>PT Sejahtera Utama (VEND-0011)</strong></td>
+    <td><strong>Siti Wahyuni (Buyer Logistik)</strong></td>
+    <td>Pembuat PO & Penilai Tender</td>
+    <td style="font-size:0.75rem; color:#b91c1c; font-weight:600;">Kesamaan Nomor Telepon & Alamat Domisili Direktur</td>
+    <td><span class="badge-tag red font-bold">High Conflict Risk (Score 94)</span></td>
+    <td class="text-right"><button class="btn btn-danger btn-xs" onclick="showToast('Bekukan Vendor & Evaluasi Kontrak')">Bekukan</button></td>
+  </tr>
+  <tr>
+    <td><strong>CV Berkah Abadi (VEND-0014)</strong></td>
+    <td><strong>Rudi Hartono (Staff AP)</strong></td>
+    <td>Staff Pembayaran Keuangan</td>
+    <td style="font-size:0.75rem; color:#b91c1c; font-weight:600;">Kesamaan Nomor Rekening Bank Tujuan Transfer</td>
+    <td><span class="badge-tag red font-bold">Critical Conflict (Score 98)</span></td>
+    <td class="text-right"><button class="btn btn-danger btn-xs" onclick="showToast('Eskalasi ke Komite Audit')">Eskalasi</button></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -631,8 +985,25 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-proc-tender-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Paket Pengadaan Tender</th>
+    <th>Peserta yang Mengajukan Penawaran</th>
+    <th>Alamat IP Pengiriman Dokumen Penawaran</th>
+    <th>Deviasi Nilai vs HPS</th>
+    <th>Evaluasi Forensik Kolusi</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>Pengadaan Armada Angkutan Logistik Jatim 2026</strong></td>
+    <td>CV Maju Sentosa, CV Karya Mandiri, PT Berkah Abadi</td>
+    <td class="font-mono text-danger font-bold">180.252.164.22 (IP Address Pengiriman Identik)</td>
+    <td class="font-mono">0.18% vs HPS (Maju Sentosa Pemenang)</td>
+    <td><span class="badge-tag red font-bold">Kolusi Tender / Peserta Pendamping Fiktif (Bid Rigging)</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -648,8 +1019,27 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-proc-split-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Grup Referensi Split</th>
+    <th>Vendor Penerima</th>
+    <th>Nomor-Nomor PO yang Diterbitkan</th>
+    <th>Rincian Nilai Pecahan</th>
+    <th>Pembuat PO</th>
+    <th>Motif Terindikasi FDS</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold text-danger">SPLIT-GRP-082</td>
+    <td><strong>CV Maju Sentosa</strong></td>
+    <td class="font-mono font-bold">PO-901, PO-902, PO-903 (Diterbitkan Bersamaan)</td>
+    <td class="font-mono font-bold text-danger">3x @ Rp 95.000.000 (Total Rp 285.000.000)</td>
+    <td>Siti Wahyuni (Buyer)</td>
+    <td><span class="badge-tag red font-bold">Penghindaran Batas Approval Direksi (> Rp 100 Juta)</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -665,8 +1055,25 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-proc-shell-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Nama Entitas Vendor</th>
+    <th>Usia Pendirian Perseroan</th>
+    <th>Alamat Terdaftar</th>
+    <th>Status Ketenagakerjaan (BPJS)</th>
+    <th>Skor Deteksi Cangkang</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>PT Global Solusindo Cangkang</strong></td>
+    <td class="font-mono text-danger font-bold">1 Bulan Lalu (Entitas Baru)</td>
+    <td>Co-Working Space Virtual Office (Tanpa Ruang Fisik)</td>
+    <td class="font-mono text-danger font-bold">0 Karyawan Terdaftar BPJS Ketenagakerjaan</td>
+    <td><span class="badge-tag red font-bold">96% Shell Probability (Tolak Pendaftaran)</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -770,8 +1177,34 @@
                     </tr>
                   </thead>
                   <tbody id="table-tax-equalization-body">
-                    <!-- Populated via JS -->
-                  </tbody>
+<tr>
+  <td><strong>PPN Penyerahan (Keluaran) - Mei 2026</strong></td>
+  <td class="font-mono font-bold">Rp 58.450.000.000</td>
+  <td class="font-mono">Rp 56.950.000.000</td>
+  <td class="font-mono text-success font-bold">Rp 56.950.000.000</td>
+  <td class="font-mono font-bold text-danger">- Rp 1.500.000.000</td>
+  <td><span class="badge-tag red font-bold">Timing Diff (Rp 1.25M) + Un-invoiced (Rp 250M)</span></td>
+  <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Verifikasi rincian ekualisasi')">Rincian</button></td>
+</tr>
+<tr>
+  <td><strong>PPh Pasal 21 (Beban Gaji & Upah) - Mei 2026</strong></td>
+  <td class="font-mono font-bold">Rp 12.800.000.000</td>
+  <td class="font-mono">Rp 12.800.000.000</td>
+  <td class="font-mono text-success font-bold">Rp 12.800.000.000</td>
+  <td class="font-mono font-bold text-success">Rp 0</td>
+  <td><span class="badge-tag green font-bold">100% Reconciled (Clean)</span></td>
+  <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Verifikasi rincian ekualisasi')">Rincian</button></td>
+</tr>
+<tr>
+  <td><strong>PPh Pasal 23 (Beban Jasa & Sewa) - Mei 2026</strong></td>
+  <td class="font-mono font-bold">Rp 4.200.000.000</td>
+  <td class="font-mono">Rp 3.950.000.000</td>
+  <td class="font-mono text-success font-bold">Rp 3.950.000.000</td>
+  <td class="font-mono font-bold text-danger">- Rp 250.000.000</td>
+  <td><span class="badge-tag red font-bold">Unpaid Withholding (Kasus AL-0516)</span></td>
+  <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Verifikasi rincian ekualisasi')">Rincian</button></td>
+</tr>
+</tbody>
                 </table>
               </div>
             </div>
@@ -789,8 +1222,35 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-tax-efaktur-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Nomor Seri Faktur Pajak (NSFP)</th>
+    <th>Nama Lawan Transaksi</th>
+    <th>Dasar Pengenaan Pajak (DPP)</th>
+    <th>Nilai PPN 11%</th>
+    <th>Status Validasi Server DJP</th>
+    <th class="text-right">Tindakan Sistem</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold text-danger">010.000-24.88721901</td>
+    <td><strong>CV Karya Mandiri</strong></td>
+    <td class="font-mono">Rp 1.318.181.818</td>
+    <td class="font-mono font-bold text-danger">Rp 145.000.000</td>
+    <td><span class="badge-tag red font-bold">DIBATALKAN SEPIHAK OLEH VENDOR</span></td>
+    <td class="text-right"><button class="btn btn-danger btn-xs" onclick="showToast('Blokir Pengkreditan Pajak Masukan')">Blokir Pajak Masukan</button></td>
+  </tr>
+  <tr>
+    <td class="font-mono font-bold">010.000-24.55192084</td>
+    <td><strong>PT Nusantara Cargo</strong></td>
+    <td class="font-mono">Rp 1.500.000.000</td>
+    <td class="font-mono font-bold text-success">Rp 165.000.000</td>
+    <td><span class="badge-tag green font-bold">APPROVED & VALID (NTPN Sah)</span></td>
+    <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Lolos Validasi SPT')">Lolos Validasi</button></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -806,8 +1266,27 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-tax-ebupot-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Nomor Bukti Potong Unifikasi</th>
+    <th>Nama Vendor Penerima</th>
+    <th>Jenis Objek Pajak</th>
+    <th>Nilai DPP Jasa/Sewa</th>
+    <th>PPh Dipungut</th>
+    <th>Status Penyetoran ke Kas Negara</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold text-danger">BUPOT-2026-9901</td>
+    <td><strong>PT Maju Bersama</strong></td>
+    <td>PPh Pasal 23 (Jasa Angkutan Logistik)</td>
+    <td class="font-mono font-bold">Rp 250.000.000</td>
+    <td class="font-mono font-bold text-danger">Rp 5.000.000</td>
+    <td><span class="badge-tag red font-bold">BELUM DISETOR KE KAS NEGARA (NTPN Kosong)</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -856,8 +1335,23 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-tax-restitusi-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Periode Pengajuan Restitusi</th>
+    <th>Nilai Klaim Lebih Bayar</th>
+    <th>Indikator Red Flags DJP</th>
+    <th>Rekomendasi Tim Pajak & Forensik</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold">Masa Pajak April - Mei 2026</td>
+    <td class="font-mono font-bold text-danger">Rp 5.120.000.000</td>
+    <td><span class="badge-tag red font-bold">Faktur Masukan Berasal dari Vendor Cangkang (Score 89)</span></td>
+    <td><span class="badge-tag orange font-bold">Hold Pengajuan Restitusi Sebelum Audit Lapangan KPP</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -908,8 +1402,31 @@
                     </tr>
                   </thead>
                   <tbody id="table-app-toxic-body">
-                    <!-- Populated via JS -->
-                  </tbody>
+<tr>
+  <td><strong>Rudi Hartono (USR-AP-088)</strong></td>
+  <td>Staff Accounts Payable</td>
+  <td class="font-mono text-danger font-bold" style="font-size:0.75rem;">AP_INVOICE_ENTRY + BANK_TRANSFER_EXECUTE</td>
+  <td class="font-mono font-bold">14 Transaksi</td>
+  <td><span class="badge-score red">CRITICAL</span></td>
+  <td class="text-right"><button class="btn btn-danger btn-xs" onclick="showToast('Hak akses bank transfer dicabut!')">Revoke Bank Access</button></td>
+</tr>
+<tr>
+  <td><strong>Hendra Wijaya (USR-MG-004)</strong></td>
+  <td>Manager Operasional</td>
+  <td class="font-mono text-danger font-bold" style="font-size:0.75rem;">PO_CREATION + PO_APPROVAL</td>
+  <td class="font-mono font-bold">8 Transaksi</td>
+  <td><span class="badge-score red">HIGH</span></td>
+  <td class="text-right"><button class="btn btn-danger btn-xs" onclick="showToast('Segregasi tugas diterapkan!')">Enforce Dual-Control</button></td>
+</tr>
+<tr>
+  <td><strong>Siti Wahyuni (USR-PR-042)</strong></td>
+  <td>Buyer Pengadaan Logistik</td>
+  <td class="font-mono text-danger font-bold" style="font-size:0.75rem;">VENDOR_MASTER_EDIT + PO_CREATION</td>
+  <td class="font-mono font-bold">6 Transaksi</td>
+  <td><span class="badge-score red">HIGH</span></td>
+  <td class="text-right"><button class="btn btn-danger btn-xs" onclick="showToast('Kunci hak edit master data!')">Lock Master Data</button></td>
+</tr>
+</tbody>
                 </table>
               </div>
             </div>
@@ -982,8 +1499,35 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-app-override-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Waktu Eksekusi</th>
+    <th>User Otorisator</th>
+    <th>Deskripsi Pelampauan Wewenang</th>
+    <th>Batas Limit Wewenang</th>
+    <th>Nilai Transaksi Riil</th>
+    <th>Evaluasi Forensik FDS</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono text-danger font-bold">30 Mei 2026, 23:45 WIB</td>
+    <td><strong>Rudi Hartono (Staff AP)</strong></td>
+    <td>Bypass 3-Way Match Invoice INV-00587</td>
+    <td class="font-mono">Rp 50.000.000</td>
+    <td class="font-mono font-bold text-danger">Rp 250.000.000</td>
+    <td><span class="badge-tag red font-bold">CRITICAL OVERRIDE: Unauthorized Bypass</span></td>
+  </tr>
+  <tr>
+    <td class="font-mono text-danger font-bold">29 Mei 2026, 17:15 WIB</td>
+    <td><strong>Hendra Wijaya (Manager Ops)</strong></td>
+    <td>Emergency Approval PO Split CV Maju Sentosa</td>
+    <td class="font-mono">Rp 100.000.000</td>
+    <td class="font-mono font-bold text-danger">Rp 285.000.000</td>
+    <td><span class="badge-tag orange font-bold">HIGH OVERRIDE: Near-Threshold Batch Approval</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -999,8 +1543,32 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-app-rubber-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Nama Approver</th>
+    <th>Waktu Rata-rata Peninjauan</th>
+    <th>Volume Transaksi</th>
+    <th>Total Nilai Approval</th>
+    <th>Tingkat Risiko</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>Hendra Wijaya (Manager Ops)</strong></td>
+    <td class="font-mono text-danger font-bold">2.4 Detik / Dokumen</td>
+    <td class="font-mono">35 PO Batch</td>
+    <td class="font-mono font-bold text-danger">Rp 1.450.000.000</td>
+    <td><span class="badge-score red">HIGH RISK (Rubber Stamping)</span></td>
+  </tr>
+  <tr>
+    <td><strong>Budi Prakoso (Supervisor)</strong></td>
+    <td class="font-mono text-danger font-bold">5.5 Detik / Tagihan</td>
+    <td class="font-mono">18 Invoice</td>
+    <td class="font-mono font-bold">Rp 620.000.000</td>
+    <td><span class="badge-score orange">MEDIUM RISK (Fast Review)</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -1016,8 +1584,32 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-app-privilege-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Nama Karyawan</th>
+    <th>Riwayat Mutasi Jabatan</th>
+    <th>Hak Akses Lama yang Belum Dicabut</th>
+    <th>Durasi Penumpukan Akses</th>
+    <th class="text-right">Rekomendasi</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>Rudi Hartono</strong></td>
+    <td>Mutasi dari Kasir Retail ke Staff AP Pusat</td>
+    <td class="font-mono text-danger font-bold">Hak Akses POS Cashier Void Masih Aktif</td>
+    <td class="font-mono">14 Bulan Pasca Mutasi</td>
+    <td class="text-right"><button class="btn btn-danger btn-xs" onclick="showToast('Akses kasir dicabut!')">REVOKE IMMEDIATE</button></td>
+  </tr>
+  <tr>
+    <td><strong>Agus Pratama</strong></td>
+    <td>Mutasi dari Gudang ke Staff GL Akuntansi</td>
+    <td class="font-mono text-danger font-bold">Hak Akses Goods Receipt Entry Masih Aktif</td>
+    <td class="font-mono">8 Bulan Pasca Mutasi</td>
+    <td class="text-right"><button class="btn btn-danger btn-xs" onclick="showToast('Akses gudang dicabut!')">REVOKE IMMEDIATE</button></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -1069,8 +1661,35 @@
                 </div>
                 <div class="table-responsive">
                   <table class="data-table" id="table-ops-cashier-table">
-                    <!-- Populated via JS -->
-                  </table>
+<thead>
+  <tr>
+    <th>Nama Kasir & Lokasi Outlet</th>
+    <th>Total Struk Penjualan</th>
+    <th>Jumlah Transaksi Void</th>
+    <th>Rasio Pembatalan (Void Ratio)</th>
+    <th>Total Nilai Void</th>
+    <th>Indikasi Anomali</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>Dina Lestari (Bandung Dago)</strong></td>
+    <td class="font-mono">142 Struk</td>
+    <td class="font-mono font-bold text-danger">28 Struk Void</td>
+    <td class="font-mono font-bold text-danger">19.7% (Abnormal > 3x Toko)</td>
+    <td class="font-mono font-bold text-danger">Rp 14.500.000</td>
+    <td><span class="badge-tag red font-bold">Indikasi Skimming Kas Masuk</span></td>
+  </tr>
+  <tr>
+    <td><strong>Budi Prasetyo (Surabaya Timur)</strong></td>
+    <td class="font-mono">180 Struk</td>
+    <td class="font-mono font-bold">15 Struk Void</td>
+    <td class="font-mono font-bold">8.3% (Tinggi)</td>
+    <td class="font-mono font-bold">Rp 8.200.000</td>
+    <td><span class="badge-tag orange font-bold">Void Pasca-Pelanggan Keluar</span></td>
+  </tr>
+</tbody>
+</table>
                 </div>
               </div>
             </div>
@@ -1086,8 +1705,25 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-ops-phantom-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Lokasi Outlet / Cabang</th>
+    <th>Waktu Transaksi Penjualan</th>
+    <th>Waktu Pembatalan (Void)</th>
+    <th>Nilai Penjualan Dibatalkan</th>
+    <th>Motif Terindikasi FDS</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>Outlet Surabaya Timur</strong></td>
+    <td class="font-mono text-danger font-bold">31 Mei 2026, 21:00 WIB (Akhir Bulan)</td>
+    <td class="font-mono text-danger font-bold">1 Juni 2026, 08:30 WIB (Awal Bulan)</td>
+    <td class="font-mono font-bold text-danger">Rp 34.500.000</td>
+    <td><span class="badge-tag red font-bold">Rekayasa Pencapaian Target Omset Bonus Bulanan</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -1102,8 +1738,27 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-ops-inventory-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Kode & Nama SKU Barang</th>
+    <th>Lokasi Gudang Penyimpanan</th>
+    <th>Saldo Stock di Sistem ERP</th>
+    <th>Hasil Perhitungan Fisik (Opname)</th>
+    <th>Selisih Volume (Shrinkage)</th>
+    <th>Nilai Kerugian Finansial</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold">SKU-88129 (Daging Sapi Premium Import)</td>
+    <td>Pusat Distribusi Cikarang</td>
+    <td class="font-mono">1.450 Kg</td>
+    <td class="font-mono font-bold">1.180 Kg</td>
+    <td class="font-mono font-bold text-danger">- 270 Kg (Hilang / Shrinkage)</td>
+    <td class="font-mono font-bold text-danger">Rp 37.800.000</td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -1118,8 +1773,29 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-ops-delivery-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Nomor Surat Jalan (SJ)</th>
+    <th>Vendor Jasa Ekspedisi</th>
+    <th>Gudang Asal</th>
+    <th>Outlet Tujuan</th>
+    <th>Kuantitas Dikirim</th>
+    <th>Kuantitas Diterima</th>
+    <th>Selisih Kehilangan Transit</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold">SJ-2026-9901</td>
+    <td><strong>PT Maju Logistik</strong></td>
+    <td>Gudang Pusat Cikarang</td>
+    <td>Outlet Bandung Dago</td>
+    <td class="font-mono">500 Karton</td>
+    <td class="font-mono font-bold">420 Karton</td>
+    <td class="font-mono font-bold text-danger">- 80 Karton (Transit Loss Rekayasa)</td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -1134,8 +1810,27 @@
               </div>
               <div class="table-responsive">
                 <table class="data-table" id="table-ops-return-table">
-                  <!-- Populated via JS -->
-                </table>
+<thead>
+  <tr>
+    <th>Nomor Retur Kasir</th>
+    <th>Lokasi Outlet</th>
+    <th>Nama Kasir</th>
+    <th>Nama Barang</th>
+    <th>Nilai Pengembalian Tunai</th>
+    <th>Karakteristik Kecurangan</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="font-mono font-bold text-danger">REF-2026-0041</td>
+    <td>Outlet Bandung Dago</td>
+    <td>Dina Lestari</td>
+    <td>5 Pcs Audio Headphone</td>
+    <td class="font-mono font-bold text-danger">Rp 12.500.000 (Tunai)</td>
+    <td><span class="badge-tag red font-bold">Retur Dana Tunai Tanpa Bukti Struk Asli Pembeli</span></td>
+  </tr>
+</tbody>
+</table>
               </div>
             </div>
           </div>
@@ -1180,8 +1875,51 @@
                   </tr>
                 </thead>
                 <tbody id="table-case-queue-body">
-                  <!-- Populated via JS -->
-                </tbody>
+<tr>
+  <td class="font-mono font-bold text-danger">AL-2024-0516</td>
+  <td><strong>Pembayaran ganda ke rekening baru vendor (Duplicate Payment)</strong></td>
+  <td><span class="badge-tag blue">Financial & UEBA</span></td>
+  <td><strong>PT Maju Bersama</strong></td>
+  <td class="font-mono font-bold text-danger">Rp 250.000.000</td>
+  <td><span class="badge-score red">High</span></td>
+  <td><span class="badge-tag orange">In Progress</span></td>
+  <td>Budi Santoso, CFE</td>
+  <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openCaseDetail('AL-2024-0516')"><i class="fa-solid fa-folder-open"></i> Dossier</button></td>
+</tr>
+<tr>
+  <td class="font-mono font-bold">AL-2024-0515</td>
+  <td><strong>Faktur pajak masukan tidak sah / terindikasi fiktif di DJP</strong></td>
+  <td><span class="badge-tag blue">Tax Equalization</span></td>
+  <td><strong>CV Karya Mandiri</strong></td>
+  <td class="font-mono font-bold text-danger">Rp 145.000.000</td>
+  <td><span class="badge-score red">High</span></td>
+  <td><span class="badge-tag green">New</span></td>
+  <td>Dewi Anggraini</td>
+  <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openCaseDetail('AL-2024-0516')"><i class="fa-solid fa-folder-open"></i> Dossier</button></td>
+</tr>
+<tr>
+  <td class="font-mono font-bold">AL-2024-0514</td>
+  <td><strong>Jurnal manual penyesuaian angka bulat (Round Amount)</strong></td>
+  <td><span class="badge-tag blue">Financial & UEBA</span></td>
+  <td><strong>PT Global Makmur</strong></td>
+  <td class="font-mono font-bold text-danger">Rp 500.000.000</td>
+  <td><span class="badge-score red">High</span></td>
+  <td><span class="badge-tag orange">In Progress</span></td>
+  <td>Andi Wijaya</td>
+  <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openCaseDetail('AL-2024-0516')"><i class="fa-solid fa-folder-open"></i> Dossier</button></td>
+</tr>
+<tr>
+  <td class="font-mono font-bold">AL-2024-0513</td>
+  <td><strong>Benturan kepentingan pengadaan (Related Party Conflict)</strong></td>
+  <td><span class="badge-tag blue">Vendor Forensics</span></td>
+  <td><strong>PT Sejahtera Utama</strong></td>
+  <td class="font-mono font-bold text-danger">Rp 1.200.000.000</td>
+  <td><span class="badge-score red">High</span></td>
+  <td><span class="badge-tag blue">Assigned</span></td>
+  <td>Rudi Hartono</td>
+  <td class="text-right"><button class="btn btn-primary btn-xs" onclick="openCaseDetail('AL-2024-0516')"><i class="fa-solid fa-folder-open"></i> Dossier</button></td>
+</tr>
+</tbody>
               </table>
             </div>
           </div>
@@ -1296,8 +2034,50 @@
                   </div>
                 </div>
                 <div class="graph-container" id="workspace-graph-container">
-                  <!-- SVG Graph injected via JS -->
-                </div>
+<svg width="100%" height="100%" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="nodeRed" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </radialGradient>
+    <radialGradient id="nodeBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Connections -->
+  <line x1="300" y1="140" x2="130" y2="70" stroke="#64748b" stroke-width="2" stroke-dasharray="4"/>
+  <line x1="300" y1="140" x2="470" y2="70" stroke="#ef4444" stroke-width="3"/>
+  <line x1="300" y1="140" x2="160" y2="240" stroke="#10b981" stroke-width="2"/>
+  <line x1="300" y1="140" x2="440" y2="240" stroke="#ef4444" stroke-width="3"/>
+  <line x1="470" y1="70" x2="440" y2="240" stroke="#ef4444" stroke-width="2" stroke-dasharray="3"/>
+
+  <!-- Center Node: AL-2024-0516 -->
+  <circle cx="300" cy="140" r="28" fill="url(#nodeRed)"/>
+  <text x="300" y="144" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle">AL-0516</text>
+
+  <!-- Node: PT Maju Bersama -->
+  <circle cx="130" cy="70" r="24" fill="url(#nodeBlue)"/>
+  <text x="130" y="74" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">PT Maju</text>
+  <text x="130" y="104" fill="#94a3b8" font-size="8.5" text-anchor="middle">Vendor Master</text>
+
+  <!-- Node: Rudi Hartono (Staff AP) -->
+  <circle cx="470" cy="70" r="26" fill="url(#nodeRed)"/>
+  <text x="470" y="74" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">Rudi H.</text>
+  <text x="470" y="104" fill="#ef4444" font-size="9" font-weight="bold" text-anchor="middle">Staff AP (Tamperer)</text>
+
+  <!-- Node: Rek Resmi BCA -->
+  <circle cx="160" cy="240" r="22" fill="#10b981"/>
+  <text x="160" y="244" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">BCA #1</text>
+  <text x="160" y="270" fill="#10b981" font-size="8.5" text-anchor="middle">Rek Resmi</text>
+
+  <!-- Node: Rek Siluman Mandiri -->
+  <circle cx="440" cy="240" r="26" fill="url(#nodeRed)"/>
+  <text x="440" y="244" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">Mandiri #2</text>
+  <text x="440" y="270" fill="#ef4444" font-size="8.5" font-weight="bold" text-anchor="middle">Rek Pribadi Suspect</text>
+</svg>
+</div>
               </div>
 
               <div class="content-card">
@@ -1351,8 +2131,27 @@
                   </div>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px;" id="workspace-evidence-list">
-                  <!-- Populated via JS -->
-                </div>
+<div style="background-color: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between;">
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <i class="fa-solid fa-file-shield text-danger" style="font-size: 1.2rem;"></i>
+    <div>
+      <strong style="font-size: 0.78rem;">Invoice_INV-2024-00587.pdf</strong><br>
+      <span style="font-size: 0.68rem; color: #64748b;">SHA-256: 8f9b2a64c7e14d8892bf30198ca115e2...</span>
+    </div>
+  </div>
+  <button class="btn btn-outline-danger btn-xs" onclick="showToast('Mengunduh berkas bukti digital...')"><i class="fa-solid fa-download"></i></button>
+</div>
+<div style="background-color: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between;">
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <i class="fa-solid fa-file-shield text-danger" style="font-size: 1.2rem;"></i>
+    <div>
+      <strong style="font-size: 0.78rem;">Audit_Trail_ERP_SAP_RudiH.log</strong><br>
+      <span style="font-size: 0.68rem; color: #64748b;">SHA-256: 3c8e4f1a992b8d0012ef4567ac891100...</span>
+    </div>
+  </div>
+  <button class="btn btn-outline-danger btn-xs" onclick="showToast('Mengunduh berkas bukti digital...')"><i class="fa-solid fa-download"></i></button>
+</div>
+</div>
               </div>
             </div>
           </div>
@@ -1396,8 +2195,37 @@
                   </tr>
                 </thead>
                 <tbody id="table-evidence-vault-body">
-                  <!-- Populated via JS -->
-                </tbody>
+<tr>
+  <td>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <i class="fa-solid fa-file-pdf text-danger" style="font-size: 1.1rem;"></i>
+      <div><strong>Invoice_INV-2024-00587.pdf</strong><br><span style="font-size: 0.7rem; color: #64748b;">PDF Scan • 1.8 MB</span></div>
+    </div>
+  </td>
+  <td><span class="badge-tag blue">PDF Scan</span></td>
+  <td>Bank Mandiri AP Module</td>
+  <td class="font-mono font-bold text-danger">AL-2024-0516</td>
+  <td class="font-mono" style="font-size: 0.68rem; color: #475569; word-break: break-all;">8f9b2a64c7e14d8892bf30198ca115e298129031209381029381029381029381</td>
+  <td class="font-mono">30 Mei 2026 23:45</td>
+  <td>Rudi Hartono (via SAP)</td>
+  <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Verifikasi Hash SHA-256 MATCH: 100% Asli')"><i class="fa-solid fa-shield-check text-success"></i> Verify</button></td>
+</tr>
+<tr>
+  <td>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <i class="fa-solid fa-file-code text-primary" style="font-size: 1.1rem;"></i>
+      <div><strong>Audit_Trail_ERP_SAP_RudiH.log</strong><br><span style="font-size: 0.7rem; color: #64748b;">JSON Log • 420 KB</span></div>
+    </div>
+  </td>
+  <td><span class="badge-tag blue">System Log</span></td>
+  <td>SAP Security Audit Log</td>
+  <td class="font-mono font-bold text-danger">AL-2024-0516</td>
+  <td class="font-mono" style="font-size: 0.68rem; color: #475569; word-break: break-all;">3c8e4f1a992b8d0012ef4567ac89110045612893019283019283019283019283</td>
+  <td class="font-mono">30 Mei 2026 23:46</td>
+  <td>FDS Automated Daemon</td>
+  <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Verifikasi Hash SHA-256 MATCH: 100% Asli')"><i class="fa-solid fa-shield-check text-success"></i> Verify</button></td>
+</tr>
+</tbody>
               </table>
             </div>
           </div>
@@ -1435,8 +2263,63 @@
                   </tr>
                 </thead>
                 <tbody id="table-users-list-body">
-                  <!-- Populated via JS -->
-                </tbody>
+<tr>
+  <td>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="user-avatar" style="background-color: var(--dark-sidebar); color: #fff;">BS</div>
+      <div><strong>Budi Santoso, CFE</strong></div>
+    </div>
+  </td>
+  <td class="font-mono">budi.santoso@nashta.co.id</td>
+  <td><span class="badge-tag blue">Lead Fraud Investigator</span></td>
+  <td>Internal Audit & Forensics</td>
+  <td><span class="badge-tag green">Aktif</span></td>
+  <td class="font-mono">Hari ini, 08:30 WIB</td>
+  <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Kelola hak akses RBAC user')">Kelola Hak</button></td>
+</tr>
+<tr>
+  <td>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="user-avatar" style="background-color: var(--dark-sidebar); color: #fff;">DA</div>
+      <div><strong>Dewi Anggraini, CISA</strong></div>
+    </div>
+  </td>
+  <td class="font-mono">dewi.anggraini@nashta.co.id</td>
+  <td><span class="badge-tag blue">Senior IT & Tax Auditor</span></td>
+  <td>Tax Compliance & IT Audit</td>
+  <td><span class="badge-tag green">Aktif</span></td>
+  <td class="font-mono">Hari ini, 09:15 WIB</td>
+  <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Kelola hak akses RBAC user')">Kelola Hak</button></td>
+</tr>
+<tr>
+  <td>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="user-avatar" style="background-color: var(--dark-sidebar); color: #fff;">RH</div>
+      <div><strong>Rudi Hartono</strong></div>
+    </div>
+  </td>
+  <td class="font-mono">rudi.hartono@nashta.co.id</td>
+  <td><span class="badge-tag red">AP Staff (Under Investigation)</span></td>
+  <td>Finance & AP</td>
+  <td><span class="badge-tag red font-bold">Suspended (Hold)</span></td>
+  <td class="font-mono">30 Mei 2026, 23:45 WIB</td>
+  <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Kelola hak akses RBAC user')">Kelola Hak</button></td>
+</tr>
+<tr>
+  <td>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="user-avatar" style="background-color: var(--dark-sidebar); color: #fff;">SW</div>
+      <div><strong>Siti Wahyuni</strong></div>
+    </div>
+  </td>
+  <td class="font-mono">siti.wahyuni@nashta.co.id</td>
+  <td><span class="badge-tag orange">Buyer (Under Audit)</span></td>
+  <td>Procurement & Logistics</td>
+  <td><span class="badge-tag orange">Restricted</span></td>
+  <td class="font-mono">Kemarin, 17:15 WIB</td>
+  <td class="text-right"><button class="btn btn-secondary btn-xs" onclick="showToast('Kelola hak akses RBAC user')">Kelola Hak</button></td>
+</tr>
+</tbody>
               </table>
             </div>
           </div>
